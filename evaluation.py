@@ -23,6 +23,7 @@ import os
 import json
 import sqlite3
 import argparse
+import psycopg2
 
 from process_sql import get_schema, Schema, get_sql
 from exec_eval import eval_exec_match
@@ -446,59 +447,86 @@ def print_formated_s(row_name, l, element_format):
     template = "{:20} " + ' '.join([element_format] * len(l))
     print(template.format(row_name, *l))
 
+    
+# create table model_accuracy(id serial primary key, model_name text not null, accuracy_type text not null, question_level text not null, accuracy decimal not null)
+
+conn = psycopg2.connect(
+  host=os.environ['aws_host_url'],
+  user=os.environ['aws_db_username'],
+  password=os.environ['aws_db_password']
+)
+cur = conn.cursor()
+  
+def save_score(accuracy_type, question_level, accuracy, level_count, model_name='tscholak/3vnuv1vf'):
+  sql = 'insert into model_accuracy(model_name, accuracy_type, question_level, level_count, accuracy) values (%s, %s, %s, %s, %s)'
+  cur.execute(sql, (model_name, accuracy_type, question_level, level_count, accuracy,))
+  conn.commit()
+    
 
 def print_scores(scores, etype, include_turn_acc=True):
     turns = ['turn 1', 'turn 2', 'turn 3', 'turn 4', 'turn > 4']
     levels = ['easy', 'medium', 'hard', 'extra', 'all']
-    if include_turn_acc:
-        levels.append('joint_all')
-    partial_types = ['select', 'select(no AGG)', 'where', 'where(no OP)', 'group(no Having)',
-                     'group', 'order', 'and/or', 'IUEN', 'keywords']
+    
+    for level in levels:
+      level_count = scores[level]['count']
 
-    print_formated_s("", levels, '{:20}')
-    counts = [scores[level]['count'] for level in levels]
-    print_formated_s("count", counts, '{:<20d}')
+      exec_level_score = scores[level]['exec']
+      save_score('exec', level, exec_level_score, level_count, model_name='tscholak/cxmefzzi')
+ 
+      em_level_score = scores[level]['exact']
+      save_score('exact', level, em_level_score, level_count, model_name='tscholak/cxmefzzi')
+      # print('exec-ls:', exec_level_score, level)
+      # print('em-ls:', em_level_score, level)
+    
+#     if include_turn_acc:
+#         levels.append('joint_all')
+#     partial_types = ['select', 'select(no AGG)', 'where', 'where(no OP)', 'group(no Having)',
+#                      'group', 'order', 'and/or', 'IUEN', 'keywords']
 
-    if etype in ["all", "exec"]:
-        print ('=====================   EXECUTION ACCURACY     =====================')
-        exec_scores = [scores[level]['exec'] for level in levels]
-        print_formated_s("execution", exec_scores, '{:<20.3f}')
+#     print_formated_s("", levels, '{:20}')
+#     counts = [scores[level]['count'] for level in levels]
+#     print_formated_s("count", counts, '{:<20d}')
+       
+#     if etype in ["all", "exec"]:
+#         print ('=====================   EXECUTION ACCURACY     =====================')
+#         exec_scores = [scores[level]['exec'] for level in levels]
+#         print_formated_s("execution", exec_scores, '{:<20.3f}')
 
-    if etype in ["all", "match"]:
-        print ('\n====================== EXACT MATCHING ACCURACY =====================')
-        exact_scores = [scores[level]['exact'] for level in levels]
-        print_formated_s("exact match", exact_scores, '{:<20.3f}')
-        print ('\n---------------------PARTIAL MATCHING ACCURACY----------------------')
-        for type_ in partial_types:
-            this_scores = [scores[level]['partial'][type_]['acc'] for level in levels]
-            print_formated_s(type_, this_scores, '{:<20.3f}')
+#     if etype in ["all", "match"]:
+#         print ('\n====================== EXACT MATCHING ACCURACY =====================')
+#         exact_scores = [scores[level]['exact'] for level in levels]
+#         print_formated_s("exact match", exact_scores, '{:<20.3f}')
+#         print ('\n---------------------PARTIAL MATCHING ACCURACY----------------------')
+#         for type_ in partial_types:
+#             this_scores = [scores[level]['partial'][type_]['acc'] for level in levels]
+#             print_formated_s(type_, this_scores, '{:<20.3f}')
 
-        print ('---------------------- PARTIAL MATCHING RECALL ----------------------')
-        for type_ in partial_types:
-            this_scores = [scores[level]['partial'][type_]['rec'] for level in levels]
-            print_formated_s(type_, this_scores, '{:<20.3f}')
+#         print ('---------------------- PARTIAL MATCHING RECALL ----------------------')
+#         for type_ in partial_types:
+#             this_scores = [scores[level]['partial'][type_]['rec'] for level in levels]
+#             print_formated_s(type_, this_scores, '{:<20.3f}')
 
-        print ('---------------------- PARTIAL MATCHING F1 --------------------------')
-        for type_ in partial_types:
-            this_scores = [scores[level]['partial'][type_]['f1'] for level in levels]
-            print_formated_s(type_, this_scores, '{:<20.3f}')
+#         print ('---------------------- PARTIAL MATCHING F1 --------------------------')
+#         for type_ in partial_types:
+#             this_scores = [scores[level]['partial'][type_]['f1'] for level in levels]
+#             print_formated_s(type_, this_scores, '{:<20.3f}')
 
-    if include_turn_acc:
-        print()
-        print()
-        print_formated_s("", turns, '{:20}')
-        counts = [scores[turn]['count'] for turn in turns]
-        print_formated_s("count", counts, "{:<20d}")
+#     if include_turn_acc:
+#         print()
+#         print()
+#         print_formated_s("", turns, '{:20}')
+#         counts = [scores[turn]['count'] for turn in turns]
+#         print_formated_s("count", counts, "{:<20d}")
 
-        if etype in ["all", "exec"]:
-            print ('=====================   TURN EXECUTION ACCURACY     =====================')
-            exec_scores = [scores[turn]['exec'] for turn in turns]
-            print_formated_s("execution", exec_scores, '{:<20.3f}')
+#         if etype in ["all", "exec"]:
+#             print ('=====================   TURN EXECUTION ACCURACY     =====================')
+#             exec_scores = [scores[turn]['exec'] for turn in turns]
+#             print_formated_s("execution", exec_scores, '{:<20.3f}')
 
-        if etype in ["all", "match"]:
-            print ('\n====================== TURN EXACT MATCHING ACCURACY =====================')
-            exact_scores = [scores[turn]['exact'] for turn in turns]
-            print_formated_s("exact match", exact_scores, '{:<20.3f}')
+#         if etype in ["all", "match"]:
+#             print ('\n====================== TURN EXACT MATCHING ACCURACY =====================')
+#             exact_scores = [scores[turn]['exact'] for turn in turns]
+#             print_formated_s("exact match", exact_scores, '{:<20.3f}')
 
 
 def evaluate(gold, predict, db_dir, etype, kmaps, plug_value, keep_distinct, progress_bar_for_each_datapoint):
@@ -567,6 +595,7 @@ def evaluate(gold, predict, db_dir, etype, kmaps, plug_value, keep_distinct, pro
             p, g = pg
             p_str = p[0]
             p_str = p_str.replace("value", "1")
+            # print('G:', g.split())
             g_str, db = g
             db_name = db
             db = os.path.join(db_dir, db, db + ".sqlite")
@@ -703,7 +732,9 @@ def evaluate(gold, predict, db_dir, etype, kmaps, plug_value, keep_distinct, pro
                         scores[level]['partial'][type_]['rec'] + scores[level]['partial'][type_]['acc'])
 
     print_scores(scores, etype, include_turn_acc=include_turn_acc)
-
+#     print("ETYPE:", etype)
+#     print("SCORES:", scores)
+    
 
 # Rebuild SQL functions for value evaluation
 def rebuild_cond_unit_val(cond_unit):
