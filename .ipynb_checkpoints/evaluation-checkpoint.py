@@ -450,12 +450,12 @@ def print_formated_s(row_name, l, element_format):
     
 # create table model_accuracy(id serial primary key, model_name text not null, accuracy_type text not null, question_level text not null, accuracy decimal not null)
 
-conn = psycopg2.connect(
-  host=os.environ['aws_host_url'],
-  user=os.environ['aws_db_username'],
-  password=os.environ['aws_db_password']
-)
-cur = conn.cursor()
+# conn = psycopg2.connect(
+#   host=os.environ['aws_host_url'],
+#   user=os.environ['aws_db_username'],
+#   password=os.environ['aws_db_password']
+# )
+# cur = conn.cursor()
   
 def save_score(accuracy_type, question_level, accuracy, level_count, model_name):
   sql = 'insert into model_accuracy(model_name, accuracy_type, question_level, level_count, accuracy) values (%s, %s, %s, %s, %s)'
@@ -645,7 +645,7 @@ def evaluate(gold, predict, db_dir, etype, kmaps, plug_value, keep_distinct, pro
                     turn_scores['exec'].append(1)
                 else:
                     turn_scores['exec'].append(0)
-                    execution_errors_list.append([p_str, db])
+                    execution_errors_list.append([p_str, db, g_str])
                     
 
             if etype in ["all", "match"]:
@@ -738,9 +738,9 @@ def evaluate(gold, predict, db_dir, etype, kmaps, plug_value, keep_distinct, pro
     
     with open('execution_errors.txt', 'w') as outfile:
       for li in execution_errors_list:
-        pred_sql, db = li[0], li[1]
-        outfile.write(pred_sql + '\t' + db)
-        outfile.write('\n')
+        pred_sql, db, gold_sql = li[0], li[1], li[2]
+        outfile.write(pred_sql + '\t' + db + '\t' + gold_sql)
+        outfile.write('\n\n')
     
 #     print("ETYPE:", etype)
 #     print("SCORES:", scores)
@@ -968,6 +968,7 @@ if __name__ == "__main__":
                         help='whether to keep distinct keyword during evaluation. default is false.')
     parser.add_argument('--progress_bar_for_each_datapoint', default=False, action='store_true',
                         help='whether to print progress bar of running test inputs for each datapoint')
+    parser.add_argument('--model_name', type=str)
     args = parser.parse_args()
 
     # only evaluting exact match needs this argument

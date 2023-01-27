@@ -1,0 +1,1054 @@
+select name, country, age FROM singer ORDER BY age	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/concert_singer/concert_singer.sqlite	SELECT name ,  country ,  age FROM singer ORDER BY age DESC
+
+select Song_Name FROM singer WHERE Age > ( avg(age) FROM singer)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/concert_singer/concert_singer.sqlite	SELECT song_name FROM singer WHERE age  >  (SELECT avg(age) FROM singer)
+
+select Song_Name FROM singer WHERE Age > ( avg(age) FROM singer)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/concert_singer/concert_singer.sqlite	SELECT song_name FROM singer WHERE age  >  (SELECT avg(age) FROM singer)
+
+select max(capacity), avg(capacity) FROM stadium	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/concert_singer/concert_singer.sqlite	select max(capacity), average from stadium
+
+select name, capacity FROM stadium ORDER BY avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(a	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/concert_singer/concert_singer.sqlite	SELECT name ,  capacity FROM stadium ORDER BY average DESC LIMIT 1
+
+select name, capacity FROM stadium ORDER BY avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(avg(a	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/concert_singer/concert_singer.sqlite	SELECT name ,  capacity FROM stadium ORDER BY average DESC LIMIT 1
+
+select Name FROM stadium WHERE Stadium_ID NOT IN ( Stadium_ID FROM concert)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/concert_singer/concert_singer.sqlite	SELECT name FROM stadium WHERE stadium_id NOT IN (SELECT stadium_id FROM concert)
+
+select Name FROM stadium WHERE Stadium_ID NOT IN ( Stadium_ID FROM concert)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/concert_singer/concert_singer.sqlite	SELECT name FROM stadium WHERE stadium_id NOT IN (SELECT stadium_id FROM concert)
+
+select country FROM singer WHERE age > 40 INTERSECT country FROM singer WHERE age  30	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/concert_singer/concert_singer.sqlite	SELECT country FROM singer WHERE age  >  40 INTERSECT SELECT country FROM singer WHERE age  <  30
+
+select name FROM stadium EXCEPT T1.name FROM stadium AS T1 JOIN concert AS T2 ON T1.stadium_id = T2.stadium_id WHERE T2.year = 2014	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/concert_singer/concert_singer.sqlite	SELECT name FROM stadium EXCEPT SELECT T2.name FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id  =  T2.stadium_id WHERE T1.year  =  2014
+
+select name FROM stadium WHERE stadium_id NOT IN ( stadium_id FROM concert) EXCEPT T1.name FROM stadium AS T1 JOIN concert AS T2 ON T1.stadium_id = T2.stadium_id WHERE T2.year = 2014)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/concert_singer/concert_singer.sqlite	SELECT name FROM stadium EXCEPT SELECT T2.name FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id  =  T2.stadium_id WHERE T1.year  =  2014
+
+select T1.concert_name, T1.theme, count(*) FROM concert AS T1 JOIN singer_in_concert AS T2 ON T1.concert_id = T2.concert_id GROUP BY T1.concert_name	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/concert_singer/concert_singer.sqlite	SELECT T2.concert_name ,  T2.theme ,  count(*) FROM singer_in_concert AS T1 JOIN concert AS T2 ON T1.concert_id  =  T2.concert_id GROUP BY T2.concert_id
+
+select T1.concert_name, T2.theme, count(*) FROM concert AS T1 JOIN singer_in_concert AS T2 ON T1.concert_id = T2.concert_id GROUP BY T1.concert_name	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/concert_singer/concert_singer.sqlite	select t2.concert_name ,  t2.theme ,  count(*) from singer_in_concert as t1 join concert as t2 on t1.concert_id  =  t2.concert_id group by t2.concert_id
+
+select T1.name FROM singer AS T1 JOIN singer_in_concert AS T2 ON T1.singer_id = T2.singer_id WHERE T2.year = 2014	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/concert_singer/concert_singer.sqlite	SELECT T2.name FROM singer_in_concert AS T1 JOIN singer AS T2 ON T1.singer_id  =  T2.singer_id JOIN concert AS T3 ON T1.concert_id  =  T3.concert_id WHERE T3.year  =  2014
+
+select T1.name FROM singer AS T1 JOIN singer_in_concert AS T2 ON T1.singer_id = T2.singer_id WHERE T2.year = 2014	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/concert_singer/concert_singer.sqlite	SELECT T2.name FROM singer_in_concert AS T1 JOIN singer AS T2 ON T1.singer_id  =  T2.singer_id JOIN concert AS T3 ON T1.concert_id  =  T3.concert_id WHERE T3.year  =  2014
+
+select T1.name, T1.location FROM stadium AS T1 JOIN concert AS T2 ON T1.stadium_id = T2.stadium_id WHERE T2.year = 2014 INTERSECT T1.name, T1.location FROM stadium AS T1 JOIN concert AS T2 ON T1.stadium_id = T2.stadium_id WHERE T2.year = 2015	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/concert_singer/concert_singer.sqlite	SELECT T2.name ,  T2.location FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id  =  T2.stadium_id WHERE T1.Year  =  2014 INTERSECT SELECT T2.name ,  T2.location FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id  =  T2.stadium_id WHERE T1.Year  =  2015
+
+select T1.name, T1.location FROM stadium AS T1 JOIN concert AS T2 ON T1.stadium_id = T2.stadium_id WHERE T2.year = 2014 INTERSECT T1.name, T1.location FROM stadium AS T1 JOIN concert AS T2 ON T1.stadium_id = T2.stadium_id WHERE T2.year = 2015	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/concert_singer/concert_singer.sqlite	SELECT T2.name ,  T2.location FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id  =  T2.stadium_id WHERE T1.Year  =  2014 INTERSECT SELECT T2.name ,  T2.location FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id  =  T2.stadium_id WHERE T1.Year  =  2015
+
+select count(*) FROM stadium AS T1 JOIN concert AS T2 ON T1.stadium_id = T2.stadium_id WHERE T1.capacity = ( max(capacity) FROM stadium)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/concert_singer/concert_singer.sqlite	select count(*) from concert where stadium_id = (select stadium_id from stadium order by capacity desc limit 1)
+
+select count(*) FROM stadium AS T1 JOIN concert AS T2 ON T1.stadium_id = T2.stadium_id WHERE T1.capacity = ( max(capacity) FROM stadium)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/concert_singer/concert_singer.sqlite	select count(*) from concert where stadium_id = (select stadium_id from stadium order by capacity desc limit 1)
+
+select weight FROM pets ORDER BY age LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/pets_1/pets_1.sqlite	SELECT weight FROM pets ORDER BY pet_age LIMIT 1
+
+select weight FROM pets ORDER BY age LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/pets_1/pets_1.sqlite	SELECT weight FROM pets ORDER BY pet_age LIMIT 1
+
+select count(*) FROM Student WHERE age > 20	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/pets_1/pets_1.sqlite	SELECT count(*) FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid WHERE T1.age  >  20
+
+select count(*) FROM pets AS T1 JOIN has_pet AS T2 ON T1.petid = T2.petid JOIN student AS T3 ON T2.stuid = T3.stuid WHERE T3.sex = 'F'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/pets_1/pets_1.sqlite	SELECT count(*) FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T2.petid  =  T3.petid WHERE T1.sex  =  'F' AND T3.pettype  =  'dog'
+
+select count(*) FROM pets AS T1 JOIN has_pet AS T2 ON T1.petid = T2.petid JOIN student AS T3 ON T2.stuid = T3.stuid WHERE T3.sex = 'F' AND T1.pet_type = 'Dog'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/pets_1/pets_1.sqlite	SELECT count(*) FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T2.petid  =  T3.petid WHERE T1.sex  =  'F' AND T3.pettype  =  'dog'
+
+select fname FROM student WHERE StuID IN ( T1.StuID FROM Has_Pet AS T1 JOIN Pets AS T2 ON T1.PetID = T2.PetID WHERE T2.pettype = 'Cat' OR T2.pettype = 'Dog')	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/pets_1/pets_1.sqlite	SELECT DISTINCT T1.Fname FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'cat' OR T3.pettype  =  'dog'
+
+select DISTINCT T1.fname FROM Student AS T1 JOIN Has_Pet AS T2 ON T1.StuID = T2.StuID WHERE T2.pettype = 'Cat' OR T2.pettype = 'Dog'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/pets_1/pets_1.sqlite	SELECT DISTINCT T1.Fname FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'cat' OR T3.pettype  =  'dog'
+
+select fname FROM Student WHERE StuID IN ( T1.StuID FROM Has_Pet AS T1 JOIN Pets AS T2 ON T1.PetID = T2.PetID WHERE T2.pettype = 'Cat' INTERSECT T1.StuID FROM Has_Pet AS T1 JOIN Pets AS T2 ON T1.PetID = T2.PetID WHERE T2.pettype = 'Dog')	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/pets_1/pets_1.sqlite	select t1.fname from student as t1 join has_pet as t2 on t1.stuid  =  t2.stuid join pets as t3 on t3.petid  =  t2.petid where t3.pettype  =  'cat' intersect select t1.fname from student as t1 join has_pet as t2 on t1.stuid  =  t2.stuid join pets as t3 on t3.petid  =  t2.petid where t3.pettype  =  'dog'
+
+select fname FROM Student WHERE StuID IN ( T1.StuID FROM Has_Pet AS T1 JOIN Pets AS T2 ON T1.PetID = T2.PetID WHERE T2.pettype = "Cat") INTERSECT T1.StuID FROM Has_Pet AS T1 JOIN Pets AS T2 ON T1.PetID = T2.PetID WHERE T2.pettype = "Dog")	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/pets_1/pets_1.sqlite	SELECT T1.Fname FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'cat' INTERSECT SELECT T1.Fname FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'dog'
+
+select Major, Age FROM Student WHERE StuID NOT IN ( T1.StuID FROM Has_Pet AS T1 JOIN Pets AS T2 ON T1.PetID = T2.PetID WHERE T2.PetType = "Cat")	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/pets_1/pets_1.sqlite	SELECT major ,  age FROM student WHERE stuid NOT IN (SELECT T1.stuid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'cat')
+
+select Major, Age FROM Student WHERE StuID NOT IN ( T1.StuID FROM Has_Pet AS T1 JOIN Pets AS T2 ON T1.PetID = T2.PetID WHERE T2.PetType = "Cat")	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/pets_1/pets_1.sqlite	SELECT major ,  age FROM student WHERE stuid NOT IN (SELECT T1.stuid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'cat')
+
+select StuID FROM Student EXCEPT StuID FROM Has_Pet WHERE PetType = "Cat"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/pets_1/pets_1.sqlite	SELECT stuid FROM student EXCEPT SELECT T1.stuid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'cat'
+
+select StuID FROM Student EXCEPT StuID FROM Has_Pet WHERE PetType = "Cat"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/pets_1/pets_1.sqlite	SELECT stuid FROM student EXCEPT SELECT T1.stuid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'cat'
+
+select fname, age FROM Student WHERE StuID IN ( T1.StuID FROM Has_Pet AS T1 JOIN Pets AS T2 ON T1.PetID = T2.PetID WHERE T2.pettype = "Dog") EXCEPT StuID FROM Has_Pet AS T1 JOIN Pets AS T2 ON T1.PetID = T2.PetID WHERE T2.pettype = "Cat")	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/pets_1/pets_1.sqlite	SELECT T1.fname ,  T1.age FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'dog' AND T1.stuid NOT IN (SELECT T1.stuid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'cat')
+
+select fname FROM student WHERE StuID IN ( T1.StuID FROM Has_Pet AS T1 JOIN Pets AS T2 ON T1.PetID = T2.PetID WHERE T2.pettype = 'Dog' EXCEPT T1.StuID FROM Has_Pet AS T1 JOIN Pets AS T2 ON T1.PetID = T2.PetID WHERE T2.pettype = 'Cat')	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/pets_1/pets_1.sqlite	SELECT T1.fname ,  T1.age FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'dog' AND T1.stuid NOT IN (SELECT T1.stuid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'cat')
+
+select pettype, weight FROM pets ORDER BY age LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/pets_1/pets_1.sqlite	SELECT pettype ,  weight FROM pets ORDER BY pet_age LIMIT 1
+
+select DISTINCT T1.fname, T1.age FROM Student AS T1 JOIN Has_Pet AS T2 ON T1.StuID = T2.StuID WHERE T2.pet_id = 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/pets_1/pets_1.sqlite	SELECT DISTINCT T1.fname ,  T1.age FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid
+
+select T1.lname FROM Student AS T1 JOIN Has_Pet AS T2 ON T1.StuID = T2.StuID WHERE T2.pet_age = 3	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/pets_1/pets_1.sqlite	SELECT T1.lname FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pet_age  =  3 AND T3.pettype  =  'cat'
+
+select T1.lname FROM Student AS T1 JOIN Has_Pet AS T2 ON T1.StuID = T2.StuID WHERE T2.pet_age = 3	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/pets_1/pets_1.sqlite	SELECT T1.lname FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pet_age  =  3 AND T3.pettype  =  'cat'
+
+select avg(age) FROM Student WHERE StuID NOT IN ( StuID FROM Has_Pet)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/pets_1/pets_1.sqlite	select avg(age) from student where stuid not in (select stuid from has_pet)
+
+select avg(age) FROM Student WHERE StuID NOT IN ( T1.StuID FROM Has_Pet AS T1 JOIN Pets AS T2 ON T1.PetID = T2.PetID WHERE T2.PetType = "R" )	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/pets_1/pets_1.sqlite	select avg(age) from student where stuid not in (select stuid from has_pet)
+
+select T1.Continent, T1.CountryName, COUNT(*) FROM countries AS T1 JOIN continents AS T2 ON T1.Continent = T2.ContinentId GROUP BY T1.Continent	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT T1.ContId ,  T1.Continent ,  count(*) FROM CONTINENTS AS T1 JOIN COUNTRIES AS T2 ON T1.ContId  =  T2.Continent GROUP BY T1.ContId;
+
+select count(*), T1.Continent, count(*) FROM countries AS T1 JOIN continents AS T2 ON T1.Continent = T2.ContinentId GROUP BY T1.Continent	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT T1.ContId ,  T1.Continent ,  count(*) FROM CONTINENTS AS T1 JOIN COUNTRIES AS T2 ON T1.ContId  =  T2.Continent GROUP BY T1.ContId;
+
+select T1.fullname, T1.id, count(*) FROM car_makers AS T1 JOIN model_list AS T2 ON T1.id = T2.modelid GROUP BY T1.id	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT T1.FullName ,  T1.Id ,  count(*) FROM CAR_MAKERS AS T1 JOIN MODEL_LIST AS T2 ON T1.Id  =  T2.Maker GROUP BY T1.Id;
+
+select T1.fullname, T1.id, count(*) FROM car_makers AS T1 JOIN model_list AS T2 ON T1.id = T2.modelid GROUP BY T1.id	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT T1.FullName ,  T1.Id ,  count(*) FROM CAR_MAKERS AS T1 JOIN MODEL_LIST AS T2 ON T1.Id  =  T2.Maker GROUP BY T1.Id;
+
+select T1.Model FROM model_list AS T1 JOIN cars_data AS T2 ON T1.Model = T2.Id ORDER BY T2.Horsepower ASC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT T1.Model FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId  =  T2.Id ORDER BY T2.horsepower ASC LIMIT 1;
+
+select T1.Model FROM model_list AS T1 JOIN cars_data AS T2 ON T1.Model = T2.Id ORDER BY T2.Horsepower ASC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT T1.Model FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId  =  T2.Id ORDER BY T2.horsepower ASC LIMIT 1;
+
+select T1.Model FROM model_list AS T1 JOIN cars_data AS T2 ON T1.Model = T2.Id WHERE T2.weight  ( avg(weight) FROM cars_data)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT T1.model FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId  =  T2.Id WHERE T2.Weight  <  (SELECT avg(Weight) FROM CARS_DATA)
+
+select T1.Model FROM model_list AS T1 JOIN cars_data AS T2 ON T1.Model = T2.Id WHERE T2.weight  ( avg(weight) FROM cars_data)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT T1.model FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId  =  T2.Id WHERE T2.Weight  <  (SELECT avg(Weight) FROM CARS_DATA)
+
+select T1.Make FROM car_makers AS T1 JOIN cars_data AS T2 ON T1.Id = T2.Id WHERE T2.Year = 1970	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT DISTINCT T1.Maker FROM CAR_MAKERS AS T1 JOIN MODEL_LIST AS T2 ON T1.Id  =  T2.Maker JOIN CAR_NAMES AS T3 ON T2.model  =  T3.model JOIN CARS_DATA AS T4 ON T3.MakeId  =  T4.id WHERE T4.year  =  '1970';
+
+select DISTINCT T1.Make FROM car_makers AS T1 JOIN cars_data AS T2 ON T1.id = T2.id WHERE T2.year = 1970	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT DISTINCT T1.Maker FROM CAR_MAKERS AS T1 JOIN MODEL_LIST AS T2 ON T1.Id  =  T2.Maker JOIN CAR_NAMES AS T3 ON T2.model  =  T3.model JOIN CARS_DATA AS T4 ON T3.MakeId  =  T4.id WHERE T4.year  =  '1970';
+
+select T1.make, T1.year FROM cars_data AS T1 JOIN cars AS T2 ON T1.id = T2.car_id ORDER BY T1.year LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT T2.Make ,  T1.Year FROM CARS_DATA AS T1 JOIN CAR_NAMES AS T2 ON T1.Id  =  T2.MakeId WHERE T1.Year  =  (SELECT min(YEAR) FROM CARS_DATA);
+
+select T1.Maker, T1.Year FROM cars_data AS T1 JOIN car_makers AS T2 ON T1.Id = T2.Car_Maker WHERE T1.Year = ( min(YEAR) FROM cars_data)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT T2.Make ,  T1.Year FROM CARS_DATA AS T1 JOIN CAR_NAMES AS T2 ON T1.Id  =  T2.MakeId WHERE T1.Year  =  (SELECT min(YEAR) FROM CARS_DATA);
+
+select DISTINCT Model FROM cars_data WHERE YEAR > 1980	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT DISTINCT T1.model FROM MODEL_LIST AS T1 JOIN CAR_NAMES AS T2 ON T1.model  =  T2.model JOIN CARS_DATA AS T3 ON T2.MakeId  =  T3.id WHERE T3.year  >  1980;
+
+select DISTINCT Model FROM model_list WHERE YEAR > 1980	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT DISTINCT T1.model FROM MODEL_LIST AS T1 JOIN CAR_NAMES AS T2 ON T1.model  =  T2.model JOIN CARS_DATA AS T3 ON T2.MakeId  =  T3.id WHERE T3.year  >  1980;
+
+select T1.Continent, COUNT(*) FROM countries AS T1 JOIN car_makers AS T2 ON T1.CountryId = T2.CountryId GROUP BY T1.CountryName	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT T1.Continent ,  count(*) FROM CONTINENTS AS T1 JOIN COUNTRIES AS T2 ON T1.ContId  =  T2.continent JOIN car_makers AS T3 ON T2.CountryId  =  T3.Country GROUP BY T1.Continent;
+
+select count(*), T1.CountryName FROM countries AS T1 JOIN car_makers AS T2 ON T1.CountryId = T2.CountryId GROUP BY T1.CountryName	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT T1.Continent ,  count(*) FROM CONTINENTS AS T1 JOIN COUNTRIES AS T2 ON T1.ContId  =  T2.continent JOIN car_makers AS T3 ON T2.CountryId  =  T3.Country GROUP BY T1.Continent;
+
+select countryname FROM countries GROUP BY countryname ORDER BY count(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT T2.CountryName FROM CAR_MAKERS AS T1 JOIN COUNTRIES AS T2 ON T1.Country  =  T2.CountryId GROUP BY T1.Country ORDER BY Count(*) DESC LIMIT 1;
+
+select CountryName FROM countries GROUP BY CountryName ORDER BY COUNT(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT T2.CountryName FROM CAR_MAKERS AS T1 JOIN COUNTRIES AS T2 ON T1.Country  =  T2.CountryId GROUP BY T1.Country ORDER BY Count(*) DESC LIMIT 1;
+
+select count(*), T1.fullname FROM car_makers AS T1 JOIN model_list AS T2 ON T1.id = T2.modelid GROUP BY T1.fullname	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	select count(*) ,  t2.fullname from model_list as t1 join car_makers as t2 on t1.maker  =  t2.id group by t2.id;
+
+select T1.id, T1.fullname, count(*) FROM car_makers AS T1 JOIN model_list AS T2 ON T1.id = T2.modelid GROUP BY T1.id	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT Count(*) ,  T2.FullName ,  T2.id FROM MODEL_LIST AS T1 JOIN CAR_MAKERS AS T2 ON T1.Maker  =  T2.Id GROUP BY T2.id;
+
+select Accelerate FROM cars_data WHERE Make = "amc hornet sportabout (sw)"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT T1.Accelerate FROM CARS_DATA AS T1 JOIN CAR_NAMES AS T2 ON T1.Id  =  T2.MakeId WHERE T2.Make  =  'amc hornet sportabout (sw)';
+
+select Accelerate FROM cars_data WHERE Model = "amc hornet sportabout (sw)"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT T1.Accelerate FROM CARS_DATA AS T1 JOIN CAR_NAMES AS T2 ON T1.Id  =  T2.MakeId WHERE T2.Make  =  'amc hornet sportabout (sw)';
+
+select count(*) FROM car_makers WHERE country = "France"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT count(*) FROM CAR_MAKERS AS T1 JOIN COUNTRIES AS T2 ON T1.Country  =  T2.CountryId WHERE T2.CountryName  =  'france';
+
+select count(*) FROM car_makers WHERE country = 'France'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT count(*) FROM CAR_MAKERS AS T1 JOIN COUNTRIES AS T2 ON T1.Country  =  T2.CountryId WHERE T2.CountryName  =  'france';
+
+select count(*) FROM cars_data WHERE country = 'USA'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT count(*) FROM MODEL_LIST AS T1 JOIN CAR_MAKERS AS T2 ON T1.Maker  =  T2.Id JOIN COUNTRIES AS T3 ON T2.Country  =  T3.CountryId WHERE T3.CountryName  =  'usa';
+
+select count(*) FROM cars_data WHERE country = 'United States'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT count(*) FROM MODEL_LIST AS T1 JOIN CAR_MAKERS AS T2 ON T1.Maker  =  T2.Id JOIN COUNTRIES AS T3 ON T2.Country  =  T3.CountryId WHERE T3.CountryName  =  'usa';
+
+select countryname, countryid FROM countries WHERE country IN ( country FROM car_makers)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT T1.CountryName ,  T1.CountryId FROM COUNTRIES AS T1 JOIN CAR_MAKERS AS T2 ON T1.CountryId  =  T2.Country GROUP BY T1.CountryId HAVING count(*)  >=  1;
+
+select countryname, countryid FROM countries WHERE country IN ( country FROM car_makers)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT T1.CountryName ,  T1.CountryId FROM COUNTRIES AS T1 JOIN CAR_MAKERS AS T2 ON T1.CountryId  =  T2.Country GROUP BY T1.CountryId HAVING count(*)  >=  1;
+
+select avg(weight), avg(year) FROM cars_data GROUP BY avg(weight)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT avg(Weight) ,  YEAR FROM CARS_DATA GROUP BY YEAR;
+
+select country FROM car_makers GROUP BY country HAVING count(*) >= 3	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT T1.CountryName FROM COUNTRIES AS T1 JOIN CONTINENTS AS T2 ON T1.Continent  =  T2.ContId JOIN CAR_MAKERS AS T3 ON T1.CountryId  =  T3.Country WHERE T2.Continent  =  'europe' GROUP BY T1.CountryName HAVING count(*)  >=  3;
+
+select countryname FROM countries WHERE Continent = "Europe" GROUP BY countryname HAVING count(*) >= 3	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT T1.CountryName FROM COUNTRIES AS T1 JOIN CONTINENTS AS T2 ON T1.Continent  =  T2.ContId JOIN CAR_MAKERS AS T3 ON T1.CountryId  =  T3.Country WHERE T2.Continent  =  'europe' GROUP BY T1.CountryName HAVING count(*)  >=  3;
+
+select max(Height), max(Height) FROM cars_data WHERE Cylinders = 3	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT T2.horsepower ,  T1.Make FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId  =  T2.Id WHERE T2.cylinders  =  3 ORDER BY T2.horsepower DESC LIMIT 1;
+
+select T1.make, T1.Horsepower FROM cars_data AS T1 JOIN car_names AS T2 ON T1.ModelId = T2.ModelId WHERE T1.cylinders = 3	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT T2.horsepower ,  T1.Make FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId  =  T2.Id WHERE T2.cylinders  =  3 ORDER BY T2.horsepower DESC LIMIT 1;
+
+select model FROM cars_data ORDER BY MPG DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT T1.Model FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId  =  T2.Id ORDER BY T2.mpg DESC LIMIT 1;
+
+select Model FROM cars_data ORDER BY MPG DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	select t1.model from car_names as t1 join cars_data as t2 on t1.makeid  =  t2.id order by t2.mpg desc limit 1;
+
+select avg(Height) FROM cars_data WHERE YEAR  1980	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT avg(horsepower) FROM CARS_DATA WHERE YEAR  <  1980;
+
+select avg(Height) FROM cars_data WHERE YEAR  1980	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	select avg(horsepower) from cars_data where year  <  1980;
+
+select avg(edispl) FROM cars_data WHERE model = 'Volvo'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT avg(T2.edispl) FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId  =  T2.Id WHERE T1.Model  =  'volvo';
+
+select avg(Edispl) FROM cars_data WHERE Id IN ( Id FROM cars_data WHERE Id IN ( Id FROM cars_data WHERE Id IN ( Id FROM cars_data WHERE Id IN ( Id FROM cars_data WHERE Id IN ( Id FROM cars_data WHERE Id IN ( Id FROM cars_data WHERE Id IN ( Id FROM cars_data WHERE Id IN ( Id FROM cars_data WHERE Id IN ( Id FROM cars_data WHERE Id IN ( Id FROM cars_data WHERE Id IN ( Id FROM cars_data WHERE Id IN ( Id FROM cars_data WHERE Id IN ( Id FROM cars_data WHERE Id IN ( Id FROM cars_data WHERE Id IN ( Id FROM cars_data WHERE Id IN ( Id FROM cars_data WHERE Id IN ( Id FROM cars_data WHERE Id IN ( Id FROM cars_data WHERE Id IN ( Id FROM cars_data WHERE Id IN ( Id FROM cars_data WHERE Id IN ( Id FROM cars_data WHERE Id IN ( Id FROM cars_data W	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT avg(T2.edispl) FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId  =  T2.Id WHERE T1.Model  =  'volvo';
+
+select max(Aggressive), Cylinders FROM cars_data GROUP BY Cylinders	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT max(Accelerate) ,  Cylinders FROM CARS_DATA GROUP BY Cylinders;
+
+select max(Aggressive), Cylinders FROM cars_data GROUP BY Cylinders	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT max(Accelerate) ,  Cylinders FROM CARS_DATA GROUP BY Cylinders;
+
+select Model FROM model_list GROUP BY Model ORDER BY COUNT(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT Model FROM CAR_NAMES GROUP BY Model ORDER BY count(*) DESC LIMIT 1;
+
+select Model FROM model_list GROUP BY Model ORDER BY COUNT(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT Model FROM CAR_NAMES GROUP BY Model ORDER BY count(*) DESC LIMIT 1;
+
+select count(*) FROM model_list AS T1 JOIN car_makers AS T2 ON T1.Maker = T2.Id WHERE T2.Maker = "American Motor Company"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT count(*) FROM CAR_MAKERS AS T1 JOIN MODEL_LIST AS T2 ON T1.Id  =  T2.Maker WHERE T1.FullName  =  'American Motor Company';
+
+select T1.fulname, T1.id FROM car_makers AS T1 JOIN model_list AS T2 ON T1.id = T2.modelid GROUP BY T1.id HAVING count(*) > 3	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT T1.FullName ,  T1.Id FROM CAR_MAKERS AS T1 JOIN MODEL_LIST AS T2 ON T1.Id  =  T2.Maker GROUP BY T1.Id HAVING count(*)  >  3;
+
+select T1.FullName, T1.Maker FROM car_makers AS T1 JOIN model_list AS T2 ON T1.Maker = T2.Maker GROUP BY T1.Maker HAVING COUNT(*) > 3	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT T1.FullName ,  T1.Id FROM CAR_MAKERS AS T1 JOIN MODEL_LIST AS T2 ON T1.Id  =  T2.Maker GROUP BY T1.Id HAVING count(*)  >  3;
+
+select DISTINCT model FROM cars_data WHERE weight > 3500 OR Manufacturer = 'General Motors'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT DISTINCT T2.Model FROM CAR_NAMES AS T1 JOIN MODEL_LIST AS T2 ON T1.Model  =  T2.Model JOIN CAR_MAKERS AS T3 ON T2.Maker  =  T3.Id JOIN CARS_DATA AS T4 ON T1.MakeId  =  T4.Id WHERE T3.FullName  =  'General Motors' OR T4.weight  >  3500;
+
+select DISTINCT model FROM cars_data WHERE weight > 3500	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT DISTINCT T2.Model FROM CAR_NAMES AS T1 JOIN MODEL_LIST AS T2 ON T1.Model  =  T2.Model JOIN CAR_MAKERS AS T3 ON T2.Maker  =  T3.Id JOIN CARS_DATA AS T4 ON T1.MakeId  =  T4.Id WHERE T3.FullName  =  'General Motors' OR T4.weight  >  3500;
+
+select YEAR FROM cars_data WHERE weight  3000 AND weight > 4000	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	select distinct year from cars_data where weight between 3000 and 4000;
+
+select DISTINCT YEAR FROM cars_data WHERE weight  4000 INTERSECT YEAR FROM cars_data WHERE weight > 3000	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	select distinct year from cars_data where weight between 3000 and 4000;
+
+select cylinders FROM cars_data WHERE model = 'Volvo' ORDER BY Accelerate LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT T1.cylinders FROM CARS_DATA AS T1 JOIN CAR_NAMES AS T2 ON T1.Id  =  T2.MakeId WHERE T2.Model  =  'volvo' ORDER BY T1.accelerate ASC LIMIT 1;
+
+select count(*) FROM cars_data WHERE Accelerate = ( min(accelerate) FROM cars_data WHERE model = 'Volvo')	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT T1.cylinders FROM CARS_DATA AS T1 JOIN CAR_NAMES AS T2 ON T1.Id  =  T2.MakeId WHERE T2.Model  =  'volvo' ORDER BY T1.accelerate ASC LIMIT 1;
+
+select count(*) FROM cars_data WHERE Accelerate > ( max(Aggress) FROM cars_data WHERE Horsepower = ( max(Horsepower) FROM cars_data ORDER BY Accelerate DESC LIMIT 1)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT COUNT(*) FROM CARS_DATA WHERE Accelerate  >  ( SELECT Accelerate FROM CARS_DATA ORDER BY Horsepower DESC LIMIT 1 );
+
+select count(*) FROM cars_data WHERE Accelerate > ( max(Aggress) FROM cars_data WHERE Horsepower = 'M')	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT COUNT(*) FROM CARS_DATA WHERE Accelerate  >  ( SELECT Accelerate FROM CARS_DATA ORDER BY Horsepower DESC LIMIT 1 );
+
+select count(*) FROM countries WHERE countryid IN ( country FROM car_makers GROUP BY country HAVING count(*) > 2).	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	select count(*) from countries as t1 join car_makers as t2 on t1.countryid  =  t2.country group by t1.countryid having count(*)  >  2
+
+select COUNT(*) FROM countries AS T1 JOIN car_makers AS T2 ON T1.Country = T2.Country GROUP BY T1.Country HAVING COUNT(*) > 2	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	select count(*) from countries as t1 join car_makers as t2 on t1.countryid  =  t2.country group by t1.countryid having count(*)  >  2
+
+select T1.Model FROM cars_data AS T1 JOIN model_list AS T2 ON T1.Model = T2.ModelId WHERE T1.cylinders = 4 GROUP BY T1.Model ORDER BY sum(T1.Height) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT T1.Model FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId  =  T2.Id WHERE T2.Cylinders  =  4 ORDER BY T2.horsepower DESC LIMIT 1;
+
+select t1.model FROM cars_data AS t1 JOIN model_list AS t2 ON t1.id = t2.model_id WHERE t1.cylinders = 4 GROUP BY t1.model_id ORDER BY sum(t1.height) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT T1.Model FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId  =  T2.Id WHERE T2.Cylinders  =  4 ORDER BY T2.horsepower DESC LIMIT 1;
+
+select T1.makeid, T1.makename FROM cars_data AS T1 JOIN car_names AS T2 ON T1.id = T2.makeid WHERE T1.height > ( min(height) FROM cars_data)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT T2.MakeId ,  T2.Make FROM CARS_DATA AS T1 JOIN CAR_NAMES AS T2 ON T1.Id  =  T2.MakeId WHERE T1.Horsepower  >  (SELECT min(Horsepower) FROM CARS_DATA) AND T1.Cylinders  <=  3;
+
+select T1.id, T1.make FROM cars_data AS T1 JOIN cars_names AS T2 ON T1.id = T2.makeId WHERE T1.cylinders  4	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	select t2.makeid ,  t2.make from cars_data as t1 join car_names as t2 on t1.id  =  t2.makeid where t1.horsepower  >  (select min(horsepower) from cars_data) and t1.cylinders  <  4;
+
+select max(MPG) FROM cars_data WHERE Cylinders = 8 UNION max(MPG) FROM cars_data WHERE YEAR  1980	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	select max(mpg) from cars_data where cylinders  =  8 or year  <  1980
+
+select max(MPG) FROM cars_data WHERE Cylinders = 8 UNION max(MPG) FROM cars_data WHERE YEAR  1980	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	select max(mpg) from cars_data where cylinders  =  8 or year  <  1980
+
+select model FROM cars_data WHERE weight  3500 EXCEPT model FROM cars_data WHERE maker = 'Ford Motor Company'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT DISTINCT T1.model FROM MODEL_LIST AS T1 JOIN CAR_NAMES AS T2 ON T1.Model  =  T2.Model JOIN CARS_DATA AS T3 ON T2.MakeId  =  T3.Id JOIN CAR_MAKERS AS T4 ON T1.Maker  =  T4.Id WHERE T3.weight  <  3500 AND T4.FullName != 'Ford Motor Company';
+
+select DISTINCT model FROM cars_data WHERE weight  3500 EXCEPT DISTINCT model FROM cars_data WHERE maker = 'Ford Motor Company'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT DISTINCT T1.model FROM MODEL_LIST AS T1 JOIN CAR_NAMES AS T2 ON T1.Model  =  T2.Model JOIN CARS_DATA AS T3 ON T2.MakeId  =  T3.Id JOIN CAR_MAKERS AS T4 ON T1.Maker  =  T4.Id WHERE T3.weight  <  3500 AND T4.FullName != 'Ford Motor Company';
+
+select countryname FROM countries WHERE countryid NOT IN ( country FROM car_makers)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT CountryName FROM countries EXCEPT SELECT T1.CountryName FROM countries AS T1 JOIN CAR_MAKERS AS T2 ON T1.countryId  =  T2.Country;
+
+select countryname FROM countries WHERE countryid NOT IN ( country FROM car_makers)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT CountryName FROM countries EXCEPT SELECT T1.CountryName FROM countries AS T1 JOIN CAR_MAKERS AS T2 ON T1.countryId  =  T2.Country;
+
+select T1.id, T2.Maker FROM model_list AS T1 JOIN car_makers AS T2 ON T1.Maker = T2.Id GROUP BY T1.id HAVING count(*) >= 2 INTERSECT T1.id, T2.Maker FROM model_list AS T1 JOIN car_makers AS T2 ON T1.Maker = T2.Id GROUP BY T1.id HAVING count(*) >= 3	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	select t1.id ,  t1.maker from car_makers as t1 join model_list as t2 on t1.id  =  t2.maker group by t1.id having count(*)  >=  2 intersect select t1.id ,  t1.maker from car_makers as t1 join model_list as t2 on t1.id  =  t2.maker join car_names as t3 on t2.model  =  t3.model group by t1.id having count(*)  >  3;
+
+select T1.id, T1.maker FROM car_makers AS T1 JOIN model_list AS T2 ON T1.modelid = T2.modelid GROUP BY T1.id HAVING count(*) > 3	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT T1.Id ,  T1.Maker FROM CAR_MAKERS AS T1 JOIN MODEL_LIST AS T2 ON T1.Id  =  T2.Maker GROUP BY T1.Id HAVING count(*)  >=  2 INTERSECT SELECT T1.Id ,  T1.Maker FROM CAR_MAKERS AS T1 JOIN MODEL_LIST AS T2 ON T1.Id  =  T2.Maker JOIN CAR_NAMES AS T3 ON T2.model  =  T3.model GROUP BY T1.Id HAVING count(*)  >  3;
+
+select T1.CountryId, T1.CountryName FROM countries AS T1 JOIN car_makers AS T2 ON T1.CountryId = T2.CountryId WHERE T2.Model = 'Fiat' GROUP BY T1.CountryId HAVING COUNT(*) > 3 UNION T1.CountryId, T1.CountryName FROM countries AS T1 JOIN car_makers AS T2 ON T1.CountryId = T2.CountryId WHERE T2.Model = 'Fiat'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	SELECT T1.countryId ,  T1.CountryName FROM Countries AS T1 JOIN CAR_MAKERS AS T2 ON T1.CountryId  =  T2.Country GROUP BY T1.countryId HAVING count(*)  >  3 UNION SELECT T1.countryId ,  T1.CountryName FROM Countries AS T1 JOIN CAR_MAKERS AS T2 ON T1.CountryId  =  T2.Country JOIN MODEL_LIST AS T3 ON T2.Id  =  T3.Maker WHERE T3.Model  =  'fiat';
+
+select T1.countryid, T1.countryname FROM countries AS T1 JOIN car_makers AS T2 ON T1.countryid = T2.countryid WHERE T2.Make = "Fiat" GROUP BY T1.countryid HAVING count(*) > 3 UNION T1.countryid, T1.countryname FROM countries AS T1 JOIN car_makers AS T2 ON T1.countryid = T2.countryid WHERE T2.Make = "Fiat"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/car_1/car_1.sqlite	select t1.countryid ,  t1.countryname from countries as t1 join car_makers as t2 on t1.countryid  =  t2.country group by t1.countryid having count(*)  >  3 union select t1.countryid ,  t1.countryname from countries as t1 join car_makers as t2 on t1.countryid  =  t2.country join model_list as t3 on t2.id  =  t3.maker where t3.model  =  'fiat';
+
+select country FROM airlines WHERE Airline = 'Jetblue Airways'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/flight_2/flight_2.sqlite	SELECT Country FROM AIRLINES WHERE Airline  =  "JetBlue Airways"
+
+select Abbreviation FROM airlines WHERE Airline = "Jetblue Airways"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/flight_2/flight_2.sqlite	SELECT Abbreviation FROM AIRLINES WHERE Airline  =  "JetBlue Airways"
+
+select count(*) FROM flights WHERE destination = 'ATO'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/flight_2/flight_2.sqlite	SELECT count(*) FROM FLIGHTS WHERE DestAirport  =  "ATO"
+
+select count(*) FROM flights WHERE originairport = 'ATO'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/flight_2/flight_2.sqlite	SELECT count(*) FROM FLIGHTS WHERE DestAirport  =  "ATO"
+
+select count(*) FROM flights WHERE destinationairport = 'Aberdeen'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/flight_2/flight_2.sqlite	SELECT count(*) FROM FLIGHTS AS T1 JOIN AIRPORTS AS T2 ON T1.DestAirport  =  T2.AirportCode WHERE T2.City  =  "Aberdeen"
+
+select count(*) FROM flights WHERE destinationairport = 'Aberdeen'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/flight_2/flight_2.sqlite	SELECT count(*) FROM FLIGHTS AS T1 JOIN AIRPORTS AS T2 ON T1.DestAirport  =  T2.AirportCode WHERE T2.City  =  "Aberdeen"
+
+select count(*) FROM flights WHERE originairport = 'Aberdeen' AND destinationairport = 'Ashley'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/flight_2/flight_2.sqlite	SELECT count(*) FROM FLIGHTS AS T1 JOIN AIRPORTS AS T2 ON T1.DestAirport  =  T2.AirportCode JOIN AIRPORTS AS T3 ON T1.SourceAirport  =  T3.AirportCode WHERE T2.City  =  "Ashley" AND T3.City  =  "Aberdeen"
+
+select count(*) FROM flights WHERE originairport = 'Aberdeen' AND destinationairport = 'Ashley'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/flight_2/flight_2.sqlite	SELECT count(*) FROM FLIGHTS AS T1 JOIN AIRPORTS AS T2 ON T1.DestAirport  =  T2.AirportCode JOIN AIRPORTS AS T3 ON T1.SourceAirport  =  T3.AirportCode WHERE T2.City  =  "Ashley" AND T3.City  =  "Aberdeen"
+
+select count(*) FROM flights WHERE Airline = 'Jetblue Airways'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/flight_2/flight_2.sqlite	SELECT count(*) FROM FLIGHTS AS T1 JOIN AIRLINES AS T2 ON T1.Airline  =  T2.uid WHERE T2.Airline = "JetBlue Airways"
+
+select count(*) FROM flights AS T1 JOIN airports AS T2 ON T1.sourceairport = T2.airportcode WHERE T2.Airline = 'United Airlines' AND T1.destairport = 'ASY Airport'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/flight_2/flight_2.sqlite	SELECT count(*) FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T2.Airline  =  T1.uid WHERE T1.Airline  =  "United Airlines" AND T2.DestAirport  =  "ASY"
+
+select count(*) FROM flights AS T1 JOIN airports AS T2 ON T1.sourceairport = T2.airportcode WHERE T2.Airline = 'United Airlines' AND T1.destairport = 'AHD'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/flight_2/flight_2.sqlite	SELECT count(*) FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T2.Airline  =  T1.uid WHERE T1.Airline  =  "United Airlines" AND T2.SourceAirport  =  "AHD"
+
+select city FROM flights GROUP BY city ORDER BY count(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/flight_2/flight_2.sqlite	SELECT T1.City FROM AIRPORTS AS T1 JOIN FLIGHTS AS T2 ON T1.AirportCode  =  T2.DestAirport GROUP BY T1.City ORDER BY count(*) DESC LIMIT 1
+
+select city FROM flights GROUP BY city ORDER BY count(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/flight_2/flight_2.sqlite	SELECT T1.City FROM AIRPORTS AS T1 JOIN FLIGHTS AS T2 ON T1.AirportCode  =  T2.SourceAirport GROUP BY T1.City ORDER BY count(*) DESC LIMIT 1
+
+select T1.AirportCode FROM airports AS T1 JOIN Flights AS T2 ON T1.AirportCode = T2.StatusAirport GROUP BY T1.AirportCode ORDER BY count(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/flight_2/flight_2.sqlite	SELECT T1.AirportCode FROM AIRPORTS AS T1 JOIN FLIGHTS AS T2 ON T1.AirportCode  =  T2.DestAirport OR T1.AirportCode  =  T2.SourceAirport GROUP BY T1.AirportCode ORDER BY count(*) DESC LIMIT 1
+
+select T1.AirportCode FROM airports AS T1 JOIN Flights AS T2 ON T1.AirportCode = T2.StatusAirport GROUP BY T1.AirportCode ORDER BY count(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/flight_2/flight_2.sqlite	SELECT T1.AirportCode FROM AIRPORTS AS T1 JOIN FLIGHTS AS T2 ON T1.AirportCode  =  T2.DestAirport OR T1.AirportCode  =  T2.SourceAirport GROUP BY T1.AirportCode ORDER BY count(*) DESC LIMIT 1
+
+select T1.AirportCode FROM airports AS T1 JOIN Flights AS T2 ON T1.AirportCode = T2.AirportCode GROUP BY T1.AirportCode ORDER BY count(*) LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/flight_2/flight_2.sqlite	SELECT T1.AirportCode FROM AIRPORTS AS T1 JOIN FLIGHTS AS T2 ON T1.AirportCode  =  T2.DestAirport OR T1.AirportCode  =  T2.SourceAirport GROUP BY T1.AirportCode ORDER BY count(*) LIMIT 1
+
+select T1.AirportCode FROM airports AS T1 JOIN Flights AS T2 ON T1.AirportCode = T2.StatusAirport GROUP BY T1.AirportCode ORDER BY count(*) LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/flight_2/flight_2.sqlite	SELECT T1.AirportCode FROM AIRPORTS AS T1 JOIN FLIGHTS AS T2 ON T1.AirportCode  =  T2.DestAirport OR T1.AirportCode  =  T2.SourceAirport GROUP BY T1.AirportCode ORDER BY count(*) LIMIT 1
+
+select Airline FROM Flights GROUP BY Airline ORDER BY COUNT(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/flight_2/flight_2.sqlite	SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid  =  T2.Airline GROUP BY T1.Airline ORDER BY count(*) DESC LIMIT 1
+
+select Airline FROM Flights GROUP BY Airline ORDER BY COUNT(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/flight_2/flight_2.sqlite	SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid  =  T2.Airline GROUP BY T1.Airline ORDER BY count(*) DESC LIMIT 1
+
+select T1.Airline, T1.Country FROM airlines AS T1 JOIN Flights AS T2 ON T1.Airline = T2.Airline GROUP BY T1.Airline ORDER BY count(*) ASC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/flight_2/flight_2.sqlite	SELECT T1.Abbreviation ,  T1.Country FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid  =  T2.Airline GROUP BY T1.Airline ORDER BY count(*) LIMIT 1
+
+select T1.Airline, T1.Country FROM airlines AS T1 JOIN Flights AS T2 ON T1.Airline = T2.Airline GROUP BY T1.Airline ORDER BY count(*) LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/flight_2/flight_2.sqlite	SELECT T1.Abbreviation ,  T1.Country FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid  =  T2.Airline GROUP BY T1.Airline ORDER BY count(*) LIMIT 1
+
+select T1.Airline FROM airlines AS T1 JOIN flights AS T2 ON T1.uid = T2.airline WHERE T2.destinationAirport = 'AHD'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/flight_2/flight_2.sqlite	SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid  =  T2.Airline WHERE T2.SourceAirport  =  "AHD"
+
+select T1.Airline FROM airlines AS T1 JOIN flights AS T2 ON T1.uid = T2.airline WHERE T2.destinationAirport = 'AHD'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/flight_2/flight_2.sqlite	SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid  =  T2.Airline WHERE T2.DestAirport  =  "AHD"
+
+select T1.Airline FROM airlines AS T1 JOIN flights AS T2 ON T1.uid = T2.airline WHERE T2.sourceairport = 'APG' INTERSECT T1.Airline FROM airlines AS T1 JOIN flights AS T2 ON T1.uid = T2.airline WHERE T2.sourceairport = 'CVO'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/flight_2/flight_2.sqlite	SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid  =  T2.Airline WHERE T2.SourceAirport  =  "APG" INTERSECT SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid  =  T2.Airline WHERE T2.SourceAirport  =  "CVO"
+
+select T1.Airline FROM airlines AS T1 JOIN flights AS T2 ON T1.uid = T2.Airline WHERE T2.destinationAirport = 'APG' INTERSECT T1.Airline FROM airlines AS T1 JOIN flights AS T2 ON T1.uid = T2.Airline WHERE T2.destinationAirport = 'CVO'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/flight_2/flight_2.sqlite	SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid  =  T2.Airline WHERE T2.SourceAirport  =  "APG" INTERSECT SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid  =  T2.Airline WHERE T2.SourceAirport  =  "CVO"
+
+select T1.Airline FROM airlines AS T1 JOIN flights AS T2 ON T1.uid = T2.airline WHERE T2.sourceairport = 'CVO' EXCEPT T1.Airline FROM airlines AS T1 JOIN flights AS T2 ON T1.uid = T2.airline WHERE T2.sourceairport = 'APG'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/flight_2/flight_2.sqlite	SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid  =  T2.Airline WHERE T2.SourceAirport  =  "CVO" EXCEPT SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid  =  T2.Airline WHERE T2.SourceAirport  =  "APG"
+
+select T1.Airline FROM airlines AS T1 JOIN flights AS T2 ON T1.uid = T2.Airline WHERE T2.destination = 'CVO' EXCEPT T1.Airline FROM airlines AS T1 JOIN flights AS T2 ON T1.uid = T2.Airline WHERE T2.destination = 'APG'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/flight_2/flight_2.sqlite	SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid  =  T2.Airline WHERE T2.SourceAirport  =  "CVO" EXCEPT SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid  =  T2.Airline WHERE T2.SourceAirport  =  "APG"
+
+select Airline FROM Flights GROUP BY Airline HAVING COUNT(*) >= 10	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/flight_2/flight_2.sqlite	SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid  =  T2.Airline GROUP BY T1.Airline HAVING count(*)  >  10
+
+select Airline FROM flights GROUP BY Airline HAVING COUNT(*) >= 10	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/flight_2/flight_2.sqlite	SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid  =  T2.Airline GROUP BY T1.Airline HAVING count(*)  >  10
+
+select Airline FROM Flights GROUP BY Airline HAVING COUNT(*)  200	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/flight_2/flight_2.sqlite	SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid  =  T2.Airline GROUP BY T1.Airline HAVING count(*)  <  200
+
+select Airline FROM flights GROUP BY Airline HAVING COUNT(*)  200	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/flight_2/flight_2.sqlite	SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid  =  T2.Airline GROUP BY T1.Airline HAVING count(*)  <  200
+
+select FlightNo FROM Flights WHERE Airline = "United Airlines"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/flight_2/flight_2.sqlite	SELECT T1.FlightNo FROM FLIGHTS AS T1 JOIN AIRLINES AS T2 ON T2.uid  =  T1.Airline WHERE T2.Airline  =  "United Airlines"
+
+select FlightNo FROM Flights WHERE Airline = "United Airlines"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/flight_2/flight_2.sqlite	SELECT T1.FlightNo FROM FLIGHTS AS T1 JOIN AIRLINES AS T2 ON T2.uid  =  T1.Airline WHERE T2.Airline  =  "United Airlines"
+
+select count(*) FROM flights WHERE destinationairport = 'Aberdeen' OR destinationairport = 'Aberdeen'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/flight_2/flight_2.sqlite	SELECT count(*) FROM Flights AS T1 JOIN Airports AS T2 ON T1.DestAirport  =  T2.AirportCode WHERE T2.city  =  "Aberdeen" OR T2.city  =  "Abilene"
+
+select count(*) FROM flights WHERE destinationairport = 'Aberdeen' OR destinationairport = 'Aberdeen'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/flight_2/flight_2.sqlite	SELECT count(*) FROM Flights AS T1 JOIN Airports AS T2 ON T1.DestAirport  =  T2.AirportCode WHERE T2.city  =  "Aberdeen" OR T2.city  =  "Abilene"
+
+select airportname FROM airports WHERE airportcode NOT IN ( airportcode FROM flights)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/flight_2/flight_2.sqlite	SELECT AirportName FROM Airports WHERE AirportCode NOT IN (SELECT SourceAirport FROM Flights UNION SELECT DestAirport FROM Flights)
+
+select airportname FROM airports EXCEPT T1.AirportName FROM airports AS T1 JOIN Flights AS T2 ON T1.AirportCode = T2.DestAirport	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/flight_2/flight_2.sqlite	SELECT AirportName FROM Airports WHERE AirportCode NOT IN (SELECT SourceAirport FROM Flights UNION SELECT DestAirport FROM Flights)
+
+select city FROM employee WHERE age  30 GROUP BY city HAVING count(*) > 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/employee_hire_evaluation/employee_hire_evaluation.sqlite	SELECT city FROM employee WHERE age  <  30 GROUP BY city HAVING count(*)  >  1
+
+select city FROM employee WHERE age  30 GROUP BY city HAVING count(*) > 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/employee_hire_evaluation/employee_hire_evaluation.sqlite	SELECT city FROM employee WHERE age  <  30 GROUP BY city HAVING count(*)  >  1
+
+select name FROM shop WHERE number_products > ( avg(number_products) FROM shop)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/employee_hire_evaluation/employee_hire_evaluation.sqlite	SELECT name FROM shop WHERE number_products  >  (SELECT avg(number_products) FROM shop)
+
+select Name FROM shop WHERE Number_products > ( avg(Number_products) FROM shop)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/employee_hire_evaluation/employee_hire_evaluation.sqlite	SELECT name FROM shop WHERE number_products  >  (SELECT avg(number_products) FROM shop)
+
+select name FROM employee WHERE employee_id NOT IN ( Employee_id FROM evaluation)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/employee_hire_evaluation/employee_hire_evaluation.sqlite	SELECT name FROM employee WHERE Employee_ID NOT IN (SELECT Employee_ID FROM evaluation)
+
+select name FROM employee WHERE employee_id NOT IN ( Employee_id FROM evaluation)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/employee_hire_evaluation/employee_hire_evaluation.sqlite	SELECT name FROM employee WHERE Employee_ID NOT IN (SELECT Employee_ID FROM evaluation)
+
+select T1.name FROM shop AS T1 JOIN hire AS T2 ON T1.shop_id = T2.shop_id GROUP BY T2.shop_id ORDER BY count(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/employee_hire_evaluation/employee_hire_evaluation.sqlite	SELECT t2.name FROM hiring AS t1 JOIN shop AS t2 ON t1.shop_id  =  t2.shop_id GROUP BY t1.shop_id ORDER BY count(*) DESC LIMIT 1
+
+select name FROM shop WHERE shop_id NOT IN ( shop_id FROM hire)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/employee_hire_evaluation/employee_hire_evaluation.sqlite	SELECT name FROM shop WHERE shop_id NOT IN (SELECT shop_id FROM hiring)
+
+select name FROM shop WHERE shop_id NOT IN ( shop_id FROM employee)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/employee_hire_evaluation/employee_hire_evaluation.sqlite	SELECT name FROM shop WHERE shop_id NOT IN (SELECT shop_id FROM hiring)
+
+select count(*), T1.name FROM shop AS T1 JOIN hire AS T2 ON T1.shop_id = T2.shop_id GROUP BY T1.name	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/employee_hire_evaluation/employee_hire_evaluation.sqlite	SELECT count(*) ,  t2.name FROM hiring AS t1 JOIN shop AS t2 ON t1.shop_id  =  t2.shop_id GROUP BY t2.name
+
+select count(*), T1.name FROM shop AS T1 JOIN employee AS T2 ON T1.shop_id = T2.shop_id GROUP BY T1.shop_id	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/employee_hire_evaluation/employee_hire_evaluation.sqlite	SELECT count(*) ,  t2.name FROM hiring AS t1 JOIN shop AS t2 ON t1.shop_id  =  t2.shop_id GROUP BY t2.name
+
+select * FROM hire	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/employee_hire_evaluation/employee_hire_evaluation.sqlite	SELECT * FROM hiring
+
+select * FROM hire	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/employee_hire_evaluation/employee_hire_evaluation.sqlite	SELECT * FROM hiring
+
+select district FROM shop WHERE number_products  3000 INTERSECT district FROM shop WHERE number_products > 10000	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/employee_hire_evaluation/employee_hire_evaluation.sqlite	SELECT district FROM shop WHERE Number_products  <  3000 INTERSECT SELECT district FROM shop WHERE Number_products  >  10000
+
+select district FROM shop WHERE number_products  3000 INTERSECT district FROM shop WHERE number_products > 10000	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/employee_hire_evaluation/employee_hire_evaluation.sqlite	SELECT district FROM shop WHERE Number_products  <  3000 INTERSECT SELECT district FROM shop WHERE Number_products  >  10000
+
+select count(*) FROM Documents WHERE template_type_code = "PPT"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/cre_Doc_Template_Mgt/cre_Doc_Template_Mgt.sqlite	SELECT count(*) FROM Documents AS T1 JOIN Templates AS T2 ON T1.Template_ID  =  T2.Template_ID WHERE T2.Template_Type_Code  =  'PPT'
+
+select count(*) FROM Documents WHERE template_type_code = "PPT"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/cre_Doc_Template_Mgt/cre_Doc_Template_Mgt.sqlite	SELECT count(*) FROM Documents AS T1 JOIN Templates AS T2 ON T1.Template_ID  =  T2.Template_ID WHERE T2.Template_Type_Code  =  'PPT'
+
+select T1.template_id, T1.template_type_code FROM Documents AS T1 JOIN Templates AS T2 ON T1.template_id = T2.template_id GROUP BY T1.template_id ORDER BY count(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/cre_Doc_Template_Mgt/cre_Doc_Template_Mgt.sqlite	SELECT T1.template_id ,  T2.Template_Type_Code FROM Documents AS T1 JOIN Templates AS T2 ON T1.template_id  =  T2.template_id GROUP BY T1.template_id ORDER BY count(*) DESC LIMIT 1
+
+select template_id FROM templates EXCEPT template_id FROM Documents	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/cre_Doc_Template_Mgt/cre_Doc_Template_Mgt.sqlite	SELECT template_id FROM Templates EXCEPT SELECT template_id FROM Documents
+
+select template_id FROM templates EXCEPT template_id FROM Documents	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/cre_Doc_Template_Mgt/cre_Doc_Template_Mgt.sqlite	SELECT template_id FROM Templates EXCEPT SELECT template_id FROM Documents
+
+select template_type_code FROM templates GROUP BY template_type_code HAVING count(*)  3	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/cre_Doc_Template_Mgt/cre_Doc_Template_Mgt.sqlite	SELECT template_type_code FROM Templates GROUP BY template_type_code HAVING count(*)  <  3
+
+select template_type_code FROM templates GROUP BY template_type_code HAVING count(*)  3	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/cre_Doc_Template_Mgt/cre_Doc_Template_Mgt.sqlite	SELECT template_type_code FROM Templates GROUP BY template_type_code HAVING count(*)  <  3
+
+select min(version_number), min(template_type_code) FROM templates	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/cre_Doc_Template_Mgt/cre_Doc_Template_Mgt.sqlite	SELECT min(Version_Number) ,  template_type_code FROM Templates
+
+select min(version_number), min(template_type_code) FROM templates	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/cre_Doc_Template_Mgt/cre_Doc_Template_Mgt.sqlite	SELECT min(Version_Number) ,  template_type_code FROM Templates
+
+select T1.template_type_code FROM Ref_template_types AS T1 JOIN Documents AS T2 ON T1.template_type_code = T2.template_type_code WHERE T2.document_name = "Database"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/cre_Doc_Template_Mgt/cre_Doc_Template_Mgt.sqlite	SELECT T1.template_type_code FROM Templates AS T1 JOIN Documents AS T2 ON T1.template_id  =  T2.template_id WHERE T2.document_name  =  "Data base"
+
+select T1.template_type_code FROM Ref_Template_Types AS T1 JOIN Documents AS T2 ON T1.Template_Type_Code = T2.Template_Type_Code WHERE T2.document_name = "Database"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/cre_Doc_Template_Mgt/cre_Doc_Template_Mgt.sqlite	SELECT T1.template_type_code FROM Templates AS T1 JOIN Documents AS T2 ON T1.template_id  =  T2.template_id WHERE T2.document_name  =  "Data base"
+
+select document_name FROM documents WHERE template_type_code = "BK"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/cre_Doc_Template_Mgt/cre_Doc_Template_Mgt.sqlite	SELECT T2.document_name FROM Templates AS T1 JOIN Documents AS T2 ON T1.template_id  =  T2.template_id WHERE T1.template_type_code  =  "BK"
+
+select document_name FROM documents WHERE template_id IN ( template_id FROM documents WHERE template_type_code = "BK")	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/cre_Doc_Template_Mgt/cre_Doc_Template_Mgt.sqlite	SELECT T2.document_name FROM Templates AS T1 JOIN Documents AS T2 ON T1.template_id  =  T2.template_id WHERE T1.template_type_code  =  "BK"
+
+select T1.template_type_code, count(*) FROM Ref_Template_Types AS T1 JOIN Documents AS T2 ON T1.template_type_code = T2.template_type_code GROUP BY T1.template_type_code	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/cre_Doc_Template_Mgt/cre_Doc_Template_Mgt.sqlite	SELECT T1.template_type_code ,  count(*) FROM Templates AS T1 JOIN Documents AS T2 ON T1.template_id  =  T2.template_id GROUP BY T1.template_type_code
+
+select T1.template_type_code, count(*) FROM Ref_Template_Types AS T1 JOIN Documents AS T2 ON T1.template_type_code = T2.template_type_code GROUP BY T1.template_type_code	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/cre_Doc_Template_Mgt/cre_Doc_Template_Mgt.sqlite	SELECT T1.template_type_code ,  count(*) FROM Templates AS T1 JOIN Documents AS T2 ON T1.template_id  =  T2.template_id GROUP BY T1.template_type_code
+
+select T1.template_type_code FROM Ref_Template_Types AS T1 JOIN Documents AS T2 ON T1.template_type_code = T2.template_type_code GROUP BY T1.template_type_code ORDER BY count(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/cre_Doc_Template_Mgt/cre_Doc_Template_Mgt.sqlite	SELECT T1.template_type_code FROM Templates AS T1 JOIN Documents AS T2 ON T1.template_id  =  T2.template_id GROUP BY T1.template_type_code ORDER BY count(*) DESC LIMIT 1
+
+select T1.template_type_code FROM Ref_Template_Types AS T1 JOIN Documents AS T2 ON T1.template_type_code = T2.template_type_code GROUP BY T1.template_type_code ORDER BY count(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/cre_Doc_Template_Mgt/cre_Doc_Template_Mgt.sqlite	SELECT T1.template_type_code FROM Templates AS T1 JOIN Documents AS T2 ON T1.template_id  =  T2.template_id GROUP BY T1.template_type_code ORDER BY count(*) DESC LIMIT 1
+
+select template_type_code FROM templates EXCEPT template_type_code FROM Documents	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/cre_Doc_Template_Mgt/cre_Doc_Template_Mgt.sqlite	SELECT template_type_code FROM Templates EXCEPT SELECT template_type_code FROM Templates AS T1 JOIN Documents AS T2 ON T1.template_id  =  T2.template_id
+
+select template_type_code FROM Ref_Template_Types EXCEPT template_type_code FROM Documents	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/cre_Doc_Template_Mgt/cre_Doc_Template_Mgt.sqlite	SELECT template_type_code FROM Templates EXCEPT SELECT template_type_code FROM Templates AS T1 JOIN Documents AS T2 ON T1.template_id  =  T2.template_id
+
+select DISTINCT template_type_description FROM Ref_Template_Types WHERE template_type_code = "HTML"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/cre_Doc_Template_Mgt/cre_Doc_Template_Mgt.sqlite	SELECT DISTINCT T1.template_type_description FROM Ref_template_types AS T1 JOIN Templates AS T2 ON T1.template_type_code  = T2.template_type_code JOIN Documents AS T3 ON T2.Template_ID  =  T3.template_ID
+
+select DISTINCT T1.template_type_description FROM Ref_Template_Types AS T1 JOIN Documents AS T2 ON T1.template_type_code = T2.template_type_code	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/cre_Doc_Template_Mgt/cre_Doc_Template_Mgt.sqlite	SELECT DISTINCT T1.template_type_description FROM Ref_template_types AS T1 JOIN Templates AS T2 ON T1.template_type_code  = T2.template_type_code JOIN Documents AS T3 ON T2.Template_ID  =  T3.template_ID
+
+select T1.template_id FROM Templates AS T1 JOIN Ref_Template_Types AS T2 ON T1.Template_Type_Code = T2.Template_Type_Code WHERE T2.Template_Description = "Presentation"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/cre_Doc_Template_Mgt/cre_Doc_Template_Mgt.sqlite	SELECT T2.template_id FROM Ref_template_types AS T1 JOIN Templates AS T2 ON T1.template_type_code  = T2.template_type_code WHERE T1.template_type_description  =  "Presentation"
+
+select T1.document_id, T1.paragraph_text FROM Documents AS T1 JOIN Paragraphs AS T2 ON T1.document_id = T2.document_id WHERE T1.document_name = "Welcome to NY"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/cre_Doc_Template_Mgt/cre_Doc_Template_Mgt.sqlite	SELECT T1.paragraph_id ,   T1.paragraph_text FROM Paragraphs AS T1 JOIN Documents AS T2 ON T1.document_id  =  T2.document_id WHERE T2.Document_Name  =  'Welcome to NY'
+
+select document_id, count(*) FROM paragraphs GROUP BY document_id ORDER BY count(*)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/cre_Doc_Template_Mgt/cre_Doc_Template_Mgt.sqlite	SELECT document_id ,  count(*) FROM Paragraphs GROUP BY document_id ORDER BY document_id
+
+select document_id, count(*) FROM paragraphs GROUP BY document_id ORDER BY count(*)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/cre_Doc_Template_Mgt/cre_Doc_Template_Mgt.sqlite	SELECT document_id ,  count(*) FROM Paragraphs GROUP BY document_id ORDER BY document_id
+
+select document_id, document_name, count(*) FROM paragraphs GROUP BY document_id	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/cre_Doc_Template_Mgt/cre_Doc_Template_Mgt.sqlite	SELECT T1.document_id ,  T2.document_name ,  count(*) FROM Paragraphs AS T1 JOIN Documents AS T2 ON T1.document_id  =  T2.document_id GROUP BY T1.document_id
+
+select document_id, document_name, count(*) FROM paragraphs GROUP BY document_id	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/cre_Doc_Template_Mgt/cre_Doc_Template_Mgt.sqlite	SELECT T1.document_id ,  T2.document_name ,  count(*) FROM Paragraphs AS T1 JOIN Documents AS T2 ON T1.document_id  =  T2.document_id GROUP BY T1.document_id
+
+select document_id, paragraph_text FROM paragraphs GROUP BY document_id ORDER BY count(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/cre_Doc_Template_Mgt/cre_Doc_Template_Mgt.sqlite	SELECT T1.document_id ,  T2.document_name FROM Paragraphs AS T1 JOIN Documents AS T2 ON T1.document_id  =  T2.document_id GROUP BY T1.document_id ORDER BY count(*) DESC LIMIT 1
+
+select document_id, document_name FROM paragraphs GROUP BY document_id ORDER BY count(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/cre_Doc_Template_Mgt/cre_Doc_Template_Mgt.sqlite	SELECT T1.document_id ,  T2.document_name FROM Paragraphs AS T1 JOIN Documents AS T2 ON T1.document_id  =  T2.document_id GROUP BY T1.document_id ORDER BY count(*) DESC LIMIT 1
+
+select document_id FROM paragraphs GROUP BY document_id HAVING count(*) >= 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/cre_Doc_Template_Mgt/cre_Doc_Template_Mgt.sqlite	SELECT document_id FROM Paragraphs GROUP BY document_id HAVING count(*) BETWEEN 1 AND 2
+
+select document_id FROM paragraphs WHERE paragraph_text BETWEEN 1 AND 2	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/cre_Doc_Template_Mgt/cre_Doc_Template_Mgt.sqlite	SELECT document_id FROM Paragraphs GROUP BY document_id HAVING count(*) BETWEEN 1 AND 2
+
+select document_id FROM paragraphs WHERE paragraph_text = 'Brazil' INTERSECT document_id FROM paragraphs WHERE paragraph_text = 'Ireland'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/cre_Doc_Template_Mgt/cre_Doc_Template_Mgt.sqlite	SELECT document_id FROM Paragraphs WHERE paragraph_text  =  'Brazil' INTERSECT SELECT document_id FROM Paragraphs WHERE paragraph_text  =  'Ireland'
+
+select document_id FROM paragraphs WHERE paragraph_text = 'Brazil' INTERSECT document_id FROM paragraphs WHERE paragraph_text = 'Ireland'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/cre_Doc_Template_Mgt/cre_Doc_Template_Mgt.sqlite	SELECT document_id FROM Paragraphs WHERE paragraph_text  =  'Brazil' INTERSECT SELECT document_id FROM Paragraphs WHERE paragraph_text  =  'Ireland'
+
+select Name FROM teacher WHERE Hometown!= 'Little Lever Urban District'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/course_teach/course_teach.sqlite	select name from teacher where hometown != "little lever urban district"
+
+select Name FROM teacher WHERE Hometown!= 'Little Lever Urban District'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/course_teach/course_teach.sqlite	select name from teacher where hometown != "little lever urban district"
+
+select T1.Name, T2.Course FROM course_arrange AS T1 JOIN teacher AS T2 ON T1.Teacher_ID = T2.Teacher_ID	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/course_teach/course_teach.sqlite	SELECT T3.Name ,  T2.Course FROM course_arrange AS T1 JOIN course AS T2 ON T1.Course_ID  =  T2.Course_ID JOIN teacher AS T3 ON T1.Teacher_ID  =  T3.Teacher_ID
+
+select T1.Name, T2.Course FROM teacher AS T1 JOIN course_arrange AS T2 ON T1.Teacher_ID = T2.Teacher_ID	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/course_teach/course_teach.sqlite	SELECT T3.Name ,  T2.Course FROM course_arrange AS T1 JOIN course AS T2 ON T1.Course_ID  =  T2.Course_ID JOIN teacher AS T3 ON T1.Teacher_ID  =  T3.Teacher_ID
+
+select T1.Name, T2.Course FROM teacher AS T1 JOIN course_arrange AS T2 ON T1.Teacher_ID = T2.Teacher_ID ORDER BY T1.Name ASC	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/course_teach/course_teach.sqlite	SELECT T3.Name ,  T2.Course FROM course_arrange AS T1 JOIN course AS T2 ON T1.Course_ID  =  T2.Course_ID JOIN teacher AS T3 ON T1.Teacher_ID  =  T3.Teacher_ID ORDER BY T3.Name
+
+select T1.Name, T2.Course FROM teacher AS T1 JOIN course_arrange AS T2 ON T1.Teacher_ID = T2.Teacher_ID ORDER BY T1.Name	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/course_teach/course_teach.sqlite	SELECT T3.Name ,  T2.Course FROM course_arrange AS T1 JOIN course AS T2 ON T1.Course_ID  =  T2.Course_ID JOIN teacher AS T3 ON T1.Teacher_ID  =  T3.Teacher_ID ORDER BY T3.Name
+
+select T1.Name FROM teacher AS T1 JOIN course AS T2 ON T1.Teacher_ID = T2.Teacher_ID WHERE T2.Course = "Math"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/course_teach/course_teach.sqlite	SELECT T3.Name FROM course_arrange AS T1 JOIN course AS T2 ON T1.Course_ID  =  T2.Course_ID JOIN teacher AS T3 ON T1.Teacher_ID  =  T3.Teacher_ID WHERE T2.Course  =  "Math"
+
+select Name FROM teacher WHERE Teacher_ID NOT IN ( Teacher_ID FROM course_arrange)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/course_teach/course_teach.sqlite	SELECT Name FROM teacher WHERE Teacher_id NOT IN (SELECT Teacher_id FROM course_arrange)
+
+select Name FROM teacher WHERE Teacher_ID NOT IN ( Teacher_ID FROM course_arrange)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/course_teach/course_teach.sqlite	SELECT Name FROM teacher WHERE Teacher_id NOT IN (SELECT Teacher_id FROM course_arrange)
+
+select count(*) FROM visitor WHERE age  30	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/museum_visit/museum_visit.sqlite	SELECT count(*) FROM visitor WHERE age  <  30
+
+select name FROM visitor WHERE LEVEL_of_membership > 4 ORDER BY LEVEL_of_membership	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/museum_visit/museum_visit.sqlite	SELECT name FROM visitor WHERE Level_of_membership  >  4 ORDER BY Level_of_membership DESC
+
+select avg(age) FROM visitor WHERE LEVEL_of_membership!= 4	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/museum_visit/museum_visit.sqlite	SELECT avg(age) FROM visitor WHERE Level_of_membership  <=  4
+
+select name, level_of_membership FROM visitor WHERE membership > 4 ORDER BY age	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/museum_visit/museum_visit.sqlite	SELECT name ,  Level_of_membership FROM visitor WHERE Level_of_membership  >  4 ORDER BY age DESC
+
+select avg(num_of_staff) FROM museum WHERE open_year  2009	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/museum_visit/museum_visit.sqlite	SELECT avg(num_of_staff) FROM museum WHERE open_year  <  2009
+
+select name FROM museum WHERE num_of_staff > ( min(num_of_staff) FROM museum WHERE open_year > 2010)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/museum_visit/museum_visit.sqlite	SELECT name FROM museum WHERE num_of_staff  >  (SELECT min(num_of_staff) FROM museum WHERE open_year  >  2010)
+
+select T1.id, T1.name, T1.level_of_membership FROM visitor AS T1 JOIN visit AS T2 ON T1.id = T2.visitor_id GROUP BY T1.id ORDER BY sum(T2.total_spent) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/museum_visit/museum_visit.sqlite	SELECT t2.visitor_id ,  t1.name ,  t1.Level_of_membership FROM visitor AS t1 JOIN visit AS t2 ON t1.id  =  t2.visitor_id GROUP BY t2.visitor_id ORDER BY sum(t2.Total_spent) DESC LIMIT 1
+
+select name FROM museum WHERE museum_id NOT IN ( museum_id FROM visit)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/museum_visit/museum_visit.sqlite	SELECT name FROM museum WHERE Museum_ID NOT IN (SELECT museum_id FROM visit)
+
+select sum(total_spent) FROM visitor WHERE LEVEL_of_membership = 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/museum_visit/museum_visit.sqlite	SELECT sum(t2.Total_spent) FROM visitor AS t1 JOIN visit AS t2 ON t1.id  =  t2.visitor_id WHERE t1.Level_of_membership  =  1
+
+select T1.name FROM visitor AS T1 JOIN visit AS T2 ON T1.id = T2.visitor_id JOIN museum AS T3 ON T2.museum_id = T3.museum_id WHERE T3.open_year  2009 INTERSECT T1.name FROM visitor AS T1 JOIN visit AS T2 ON T1.id = T2.visitor_id JOIN museum AS T3 ON T2.museum_id = T3.museum_id WHERE T3.open_year > 2011	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/museum_visit/museum_visit.sqlite	SELECT t1.name FROM visitor AS t1 JOIN visit AS t2 ON t1.id  =  t2.visitor_id JOIN museum AS t3 ON t3.Museum_ID  =  t2.Museum_ID WHERE t3.open_year  <  2009 INTERSECT SELECT t1.name FROM visitor AS t1 JOIN visit AS t2 ON t1.id  =  t2.visitor_id JOIN museum AS t3 ON t3.Museum_ID  =  t2.Museum_ID WHERE t3.open_year  >  2011
+
+select count(*) FROM visitor WHERE id NOT IN ( visitor_id FROM visit WHERE museum_id IN ( museum_id FROM visit WHERE open_year > 2010 )	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/museum_visit/museum_visit.sqlite	SELECT count(*) FROM visitor WHERE id NOT IN (SELECT t2.visitor_id FROM museum AS t1 JOIN visit AS t2 ON t1.Museum_ID  =  t2.Museum_ID WHERE t1.open_year  >  2010)
+
+select count(*) FROM museum WHERE open_year > 2013 OR open_year  2008	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/museum_visit/museum_visit.sqlite	SELECT count(*) FROM museum WHERE open_year  >  2013 OR open_year  <  2008
+
+select max(loser_rank) FROM matches	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/wta_1/wta_1.sqlite	SELECT min(loser_rank) FROM matches
+
+select t1.loser_rank FROM matches AS t1 JOIN ranking AS t2 ON t1.loser_id = t2.loser_id GROUP BY t1.loser_rank ORDER BY count(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/wta_1/wta_1.sqlite	SELECT min(loser_rank) FROM matches
+
+select T1.tourney_name FROM TOURNEY AS T1 JOIN MATCHES AS T2 ON T1.tourney_id = T2.tourney_id GROUP BY T1.tourney_name HAVING count(*) > 10	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/wta_1/wta_1.sqlite	SELECT tourney_name FROM matches GROUP BY tourney_name HAVING count(*)  >  10
+
+select T1.toury_name FROM tournaments AS T1 JOIN MATCHES AS T2 ON T1.toury_id = T2.toury_id GROUP BY T1.toury_name HAVING count(*) > 10	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/wta_1/wta_1.sqlite	SELECT tourney_name FROM matches GROUP BY tourney_name HAVING count(*)  >  10
+
+select T1.winner_name FROM players AS T1 JOIN results AS T2 ON T1.player_id = T2.player_id WHERE T2.year = 2013 INTERSECT T1.winner_name FROM players AS T1 JOIN results AS T2 ON T1.player_id = T2.player_id WHERE T2.year = 2016	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/wta_1/wta_1.sqlite	SELECT winner_name FROM matches WHERE YEAR  =  2013 INTERSECT SELECT winner_name FROM matches WHERE YEAR  =  2016
+
+select T1.first_name FROM players AS T1 JOIN results AS T2 ON T1.player_id = T2.player_id WHERE T2.year = 2013 INTERSECT T1.first_name FROM players AS T1 JOIN results AS T2 ON T1.player_id = T2.player_id WHERE T2.year = 2016	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/wta_1/wta_1.sqlite	SELECT winner_name FROM matches WHERE YEAR  =  2013 INTERSECT SELECT winner_name FROM matches WHERE YEAR  =  2016
+
+select T1.country_code, T1.first_name FROM players AS T1 JOIN results AS T2 ON T1.player_id = T2.player_id JOIN tourneys AS T3 ON T2.tourney_id = T3.tourney_id WHERE T3.tourney_name = "WTA Championships" INTERSECT T1.country_code, T1.first_name FROM players AS T1 JOIN results AS T2 ON T1.player_id = T2.player_id JOIN tourneys AS T3 ON T2.tourney_id = T3.tourney_id WHERE T3.tourney_name = "Australian Open"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/wta_1/wta_1.sqlite	SELECT T1.country_code ,  T1.first_name FROM players AS T1 JOIN matches AS T2 ON T1.player_id  =  T2.winner_id WHERE T2.tourney_name  =  'WTA Championships' INTERSECT SELECT T1.country_code ,  T1.first_name FROM players AS T1 JOIN matches AS T2 ON T1.player_id  =  T2.winner_id WHERE T2.tourney_name  =  'Australian Open'
+
+select T1.first_name, T1.country_code FROM players AS T1 JOIN ranking AS T2 ON T1.player_id = T2.player_id JOIN tournaments AS T3 ON T2.tournament_id = T3.tournament_id WHERE T3.winner_name = 'WTA Championships' INTERSECT T1.first_name, T1.country_code FROM players AS T1 JOIN ranking AS T2 ON T1.player_id = T2.player_id JOIN tournaments AS T3 ON T2.tournament_id = T3.tournament_id WHERE T3.winner_name = 'Australian Open'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/wta_1/wta_1.sqlite	SELECT T1.country_code ,  T1.first_name FROM players AS T1 JOIN matches AS T2 ON T1.player_id  =  T2.winner_id WHERE T2.tourney_name  =  'WTA Championships' INTERSECT SELECT T1.country_code ,  T1.first_name FROM players AS T1 JOIN matches AS T2 ON T1.player_id  =  T2.winner_id WHERE T2.tourney_name  =  'Australian Open'
+
+select first_name, last_name FROM players WHERE hand = left INTERSECT first_name, last_name FROM players WHERE hand = left ORDER BY birth_date	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/wta_1/wta_1.sqlite	SELECT first_name ,  last_name FROM players WHERE hand  =  'L' ORDER BY birth_date
+
+select first_name, last_name, hand FROM players WHERE hand = 'left' ORDER BY birth_date	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/wta_1/wta_1.sqlite	SELECT first_name ,  last_name FROM players WHERE hand  =  'L' ORDER BY birth_date
+
+select T1.first_name, T1.country_code FROM players AS T1 JOIN ranking AS T2 ON T1.player_id = T2.player_id GROUP BY T1.player_id ORDER BY COUNT(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/wta_1/wta_1.sqlite	SELECT T1.country_code ,  T1.first_name FROM players AS T1 JOIN rankings AS T2 ON T1.player_id  =  T2.player_id ORDER BY T2.tours DESC LIMIT 1
+
+select T1.first_name, T1.country_code FROM players AS T1 JOIN ranking AS T2 ON T1.player_id = T2.player_id GROUP BY T1.player_id ORDER BY count(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/wta_1/wta_1.sqlite	SELECT T1.country_code ,  T1.first_name FROM players AS T1 JOIN rankings AS T2 ON T1.player_id  =  T2.player_id ORDER BY T2.tours DESC LIMIT 1
+
+select T1.winner_name, T1.winner_rank_points FROM winners AS T1 JOIN ranking AS T2 ON T1.winner_id = T2.player_id GROUP BY T1.winner_name ORDER BY count(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/wta_1/wta_1.sqlite	SELECT winner_name ,  winner_rank_points FROM matches GROUP BY winner_name ORDER BY count(*) DESC LIMIT 1
+
+select T1.winner_name, T2.winner_rank_points FROM players AS T1 JOIN ranking AS T2 ON T1.player_id = T2.player_id GROUP BY T1.winner_name ORDER BY count(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/wta_1/wta_1.sqlite	SELECT winner_name ,  winner_rank_points FROM matches GROUP BY winner_name ORDER BY count(*) DESC LIMIT 1
+
+select T1.winner_name FROM players AS T1 JOIN ranking AS T2 ON T1.player_id = T2.player_id JOIN tournaments AS T3 ON T2.tourney_id = T3.tourney_id WHERE T3.tourney_name = "Australian Open" AND T2.winner_rank_points = ( max(T2.winner_rank_points) FROM ranking AS T2 JOIN tournaments AS T3 ON T2.tourney_id = T3.tourney_id WHERE T3.tourney_name = "Australian Open")	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/wta_1/wta_1.sqlite	SELECT winner_name FROM matches WHERE tourney_name  =  'Australian Open' ORDER BY winner_rank_points DESC LIMIT 1
+
+select T1.winner_name FROM players AS T1 JOIN ranking AS T2 ON T1.player_id = T2.player_id JOIN tournaments AS T3 ON T2.tourney_id = T3.tourney_id WHERE T3.tourney_name = "Australian Open" ORDER BY T2.winner_rank_points DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/wta_1/wta_1.sqlite	SELECT winner_name FROM matches WHERE tourney_name  =  'Australian Open' ORDER BY winner_rank_points DESC LIMIT 1
+
+select T1.loser_name, T1.winner_name FROM players AS T1 JOIN matches AS T2 ON T1.player_id = T2.loser_id ORDER BY T2.minutes DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/wta_1/wta_1.sqlite	SELECT winner_name ,  loser_name FROM matches ORDER BY minutes DESC LIMIT 1
+
+select T1.winner_name, T1.loser_name FROM players AS T1 JOIN matches AS T2 ON T1.player_id = T2.winner_id ORDER BY T2.minutes DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/wta_1/wta_1.sqlite	SELECT winner_name ,  loser_name FROM matches ORDER BY minutes DESC LIMIT 1
+
+select avg(ranking_points), first_name FROM players GROUP BY first_name	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/wta_1/wta_1.sqlite	SELECT avg(ranking) ,  T1.first_name FROM players AS T1 JOIN rankings AS T2 ON T1.player_id  =  T2.player_id GROUP BY T1.first_name
+
+select avg(first_name) FROM players	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/wta_1/wta_1.sqlite	SELECT avg(ranking) ,  T1.first_name FROM players AS T1 JOIN rankings AS T2 ON T1.player_id  =  T2.player_id GROUP BY T1.first_name
+
+select sum(ranking_points), first_name FROM players	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/wta_1/wta_1.sqlite	SELECT sum(ranking_points) ,  T1.first_name FROM players AS T1 JOIN rankings AS T2 ON T1.player_id  =  T2.player_id GROUP BY T1.first_name
+
+select first_name, sum(ranking_points) FROM players GROUP BY first_name	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/wta_1/wta_1.sqlite	SELECT sum(ranking_points) ,  T1.first_name FROM players AS T1 JOIN rankings AS T2 ON T1.player_id  =  T2.player_id GROUP BY T1.first_name
+
+select ranking_date, sum(tours) FROM ranking GROUP BY ranking_date	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/wta_1/wta_1.sqlite	SELECT sum(tours) ,  ranking_date FROM rankings GROUP BY ranking_date
+
+select ranking_date, sum(tours) FROM ranking GROUP BY ranking_date	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/wta_1/wta_1.sqlite	SELECT sum(tours) ,  ranking_date FROM rankings GROUP BY ranking_date
+
+select T1.winner_name, T1.winner_rank FROM winners AS T1 JOIN ranking AS T2 ON T1.winner_id = T2.winner_id ORDER BY T1.winner_age LIMIT 3	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/wta_1/wta_1.sqlite	SELECT DISTINCT winner_name ,  winner_rank FROM matches ORDER BY winner_age LIMIT 3
+
+select T1.winner_name, T1.winner_rank FROM winners AS T1 JOIN losers AS T2 ON T1.winner_id = T2.winner_id ORDER BY T2.winner_age LIMIT 3	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/wta_1/wta_1.sqlite	SELECT DISTINCT winner_name ,  winner_rank FROM matches ORDER BY winner_age LIMIT 3
+
+select count(DISTINCT T1.winner_name) FROM results AS T1 JOIN players AS T2 ON T1.winner_id = T2.player_id WHERE T1.tournament_name = "WTA Championships" AND T2.hand = "left"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/wta_1/wta_1.sqlite	SELECT count(DISTINCT winner_name) FROM matches WHERE tourney_name  =  'WTA Championships' AND winner_hand  =  'L'
+
+select count(*) FROM players AS T1 JOIN results AS T2 ON T1.player_id = T2.player_id JOIN tournaments AS T3 ON T2.tourney_id = T3.tourney_id WHERE T3.winner_hand = 'left' AND T2.tourney_name = "WTA Championships"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/wta_1/wta_1.sqlite	SELECT count(DISTINCT winner_name) FROM matches WHERE tourney_name  =  'WTA Championships' AND winner_hand  =  'L'
+
+select T1.first_name, T1.country_code, T1.birth_date FROM players AS T1 JOIN ranking AS T2 ON T1.player_id = T2.player_id ORDER BY T2.ranking_points DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/wta_1/wta_1.sqlite	SELECT T1.first_name ,  T1.country_code ,  T1.birth_date FROM players AS T1 JOIN matches AS T2 ON T1.player_id  =  T2.winner_id ORDER BY T2.winner_rank_points DESC LIMIT 1
+
+select T1.first_name, T1.country_code, T1.birth_date FROM players AS T1 JOIN ranking AS T2 ON T1.player_id = T2.player_id GROUP BY T1.player_id ORDER BY count(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/wta_1/wta_1.sqlite	SELECT T1.first_name ,  T1.country_code ,  T1.birth_date FROM players AS T1 JOIN matches AS T2 ON T1.player_id  =  T2.winner_id ORDER BY T2.winner_rank_points DESC LIMIT 1
+
+select name, date, result FROM battle	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/battle_death/battle_death.sqlite	SELECT name ,  date FROM battle
+
+select max(death), min(death) FROM death	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/battle_death/battle_death.sqlite	SELECT max(killed) ,  min(killed) FROM death
+
+select death, injury FROM death WHERE ship_type = 't'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/battle_death/battle_death.sqlite	SELECT T1.killed ,  T1.injured FROM death AS T1 JOIN ship AS t2 ON T1.caused_by_ship_id  =  T2.id WHERE T2.tonnage  =  't'
+
+select name, results FROM battle WHERE bulgarian_commander!= 'Boril'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/battle_death/battle_death.sqlite	SELECT name ,  RESULT FROM battle WHERE bulgarian_commander != 'Boril'
+
+select DISTINCT id, name FROM battle WHERE ship_type = 'Brig'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/battle_death/battle_death.sqlite	SELECT DISTINCT T1.id ,  T1.name FROM battle AS T1 JOIN ship AS T2 ON T1.id  =  T2.lost_in_battle WHERE T2.ship_type  =  'Brig'
+
+select T1.id, T1.name FROM battle AS T1 JOIN death AS T2 ON T1.id = T2.caused_by_ship_id GROUP BY T1.id HAVING count(*) > 10	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/battle_death/battle_death.sqlite	SELECT T1.id ,  T1.name FROM battle AS T1 JOIN ship AS T2 ON T1.id  =  T2.lost_in_battle JOIN death AS T3 ON T2.id  =  T3.caused_by_ship_id GROUP BY T1.id HAVING sum(T3.killed)  >  10
+
+select T1.id, T1.name FROM ship AS T1 JOIN death AS T2 ON T1.id = T2.caused_by_ship_id GROUP BY T1.id ORDER BY sum(T2.injured) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/battle_death/battle_death.sqlite	SELECT T2.id ,  T2.name FROM death AS T1 JOIN ship AS t2 ON T1.caused_by_ship_id  =  T2.id GROUP BY T2.id ORDER BY count(*) DESC LIMIT 1
+
+select count(*) FROM battle WHERE id NOT IN ( id FROM ship WHERE tonnage = 225)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/battle_death/battle_death.sqlite	SELECT count(*) FROM battle WHERE id NOT IN ( SELECT lost_in_battle FROM ship WHERE tonnage  =  '225' );
+
+select T1.name, T1.date FROM battle AS T1 JOIN ship AS T2 ON T1.id = T2.lost_in_battle WHERE T2.name = 'Lettice' INTERSECT T1.name, T1.date FROM battle AS T1 JOIN ship AS T2 ON T1.id = T2.lost_in_battle WHERE T2.name = 'HMS Atalanta'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/battle_death/battle_death.sqlite	SELECT T1.name ,  T1.date FROM battle AS T1 JOIN ship AS T2 ON T1.id  =  T2.lost_in_battle WHERE T2.name  =  'Lettice' INTERSECT SELECT T1.name ,  T1.date FROM battle AS T1 JOIN ship AS T2 ON T1.id  =  T2.lost_in_battle WHERE T2.name  =  'HMS Atalanta'
+
+select name, results, bulgarian_commander FROM battle WHERE id NOT IN ( T1.id FROM ship AS T1 JOIN battle AS T2 ON T1.lost_in_battle = T2.id WHERE T1.location = 'English Channel')	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/battle_death/battle_death.sqlite	SELECT name ,  RESULT ,  bulgarian_commander FROM battle EXCEPT SELECT T1.name ,  T1.result ,  T1.bulgarian_commander FROM battle AS T1 JOIN ship AS T2 ON T1.id  =  T2.lost_in_battle WHERE T2.location  =  'English Channel'
+
+select address_id FROM addresses WHERE line_1 INTERSECT address_id FROM addresses WHERE line_2	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/student_transcripts_tracking/student_transcripts_tracking.sqlite	SELECT line_1 ,  line_2 FROM addresses
+
+select course_description FROM courses WHERE course_name = "Math"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/student_transcripts_tracking/student_transcripts_tracking.sqlite	SELECT course_description FROM Courses WHERE course_name  =  'math'
+
+select course_description FROM courses WHERE course_name = "Math"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/student_transcripts_tracking/student_transcripts_tracking.sqlite	SELECT course_description FROM Courses WHERE course_name  =  'math'
+
+select department_name, department_id FROM DEGREE_PROGRAMS GROUP BY department_name ORDER BY count(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/student_transcripts_tracking/student_transcripts_tracking.sqlite	SELECT T2.department_name ,  T1.department_id FROM Degree_Programs AS T1 JOIN Departments AS T2 ON T1.department_id  =  T2.department_id GROUP BY T1.department_id ORDER BY count(*) DESC LIMIT 1
+
+select department_name, department_id FROM DEGREE_PROGRAMS GROUP BY department_id ORDER BY count(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/student_transcripts_tracking/student_transcripts_tracking.sqlite	select t2.department_name ,  t1.department_id from degree_programs as t1 join departments as t2 on t1.department_id  =  t2.department_id group by t1.department_id order by count(*) desc limit 1
+
+select count(DISTINCT department_id) FROM Degee_Programs	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/student_transcripts_tracking/student_transcripts_tracking.sqlite	SELECT count(DISTINCT department_id) FROM Degree_Programs
+
+select count(DISTINCT department_id) FROM Degee_Programs	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/student_transcripts_tracking/student_transcripts_tracking.sqlite	SELECT count(DISTINCT department_id) FROM Degree_Programs
+
+select count(DISTINCT degree_summary_name) FROM Degee_Programs	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/student_transcripts_tracking/student_transcripts_tracking.sqlite	SELECT count(DISTINCT degree_summary_name) FROM Degree_Programs
+
+select count(DISTINCT degree_program_id) FROM Degee_Programs	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/student_transcripts_tracking/student_transcripts_tracking.sqlite	SELECT count(DISTINCT degree_summary_name) FROM Degree_Programs
+
+select sum(degree_summary_name) FROM DEGREE_PROGRAMS WHERE department_name = "engineering"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/student_transcripts_tracking/student_transcripts_tracking.sqlite	SELECT count(*) FROM Departments AS T1 JOIN Degree_Programs AS T2 ON T1.department_id  =  T2.department_id WHERE T1.department_name  =  'engineer'
+
+select sum(degree_summary_name) FROM DEPARTMENTS WHERE department_name = "engineering"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/student_transcripts_tracking/student_transcripts_tracking.sqlite	SELECT count(*) FROM Departments AS T1 JOIN Degree_Programs AS T2 ON T1.department_id  =  T2.department_id WHERE T1.department_name  =  'engineer'
+
+select T1.course_name, T1.course_id FROM Courses AS T1 JOIN Sections AS T2 ON T1.course_id = T2.course_id GROUP BY T1.course_id HAVING count(*) = 2	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/student_transcripts_tracking/student_transcripts_tracking.sqlite	SELECT T1.course_name ,  T1.course_id FROM Courses AS T1 JOIN Sections AS T2 ON T1.course_id  =  T2.course_id GROUP BY T1.course_id HAVING count(*)  <=  2
+
+select T1.course_name, T1.course_id FROM Courses AS T1 JOIN Sections AS T2 ON T1.course_id = T2.course_id GROUP BY T1.course_id HAVING count(*)  2	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/student_transcripts_tracking/student_transcripts_tracking.sqlite	SELECT T1.course_name ,  T1.course_id FROM Courses AS T1 JOIN Sections AS T2 ON T1.course_id  =  T2.course_id GROUP BY T1.course_id HAVING count(*)  <=  2
+
+select semester_name, student_id FROM Student_Enrolment GROUP BY semester_name ORDER BY count(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/student_transcripts_tracking/student_transcripts_tracking.sqlite	SELECT T1.semester_name ,  T1.semester_id FROM Semesters AS T1 JOIN Student_Enrolment AS T2 ON T1.semester_id  =  T2.semester_id GROUP BY T1.semester_id ORDER BY count(*) DESC LIMIT 1
+
+select T1.first_name, T1.middle_name, T1.last_name, T1.student_enrolment_id FROM Students AS T1 JOIN Student_Enrolment AS T2 ON T1.student_id = T2.student_id GROUP BY T1.student_enrolment_id HAVING count(*) = 2	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/student_transcripts_tracking/student_transcripts_tracking.sqlite	SELECT T1.first_name ,  T1.middle_name ,  T1.last_name ,  T1.student_id FROM Students AS T1 JOIN Student_Enrolment AS T2 ON T1.student_id  =  T2.student_id GROUP BY T1.student_id HAVING count(*)  =  2
+
+select T1.first_name, T1.middle_name, T1.last_name FROM students AS T1 JOIN student_enrolment AS T2 ON T1.student_id = T2.student_id WHERE T2.degree_program_id = 'Bachelor'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/student_transcripts_tracking/student_transcripts_tracking.sqlite	SELECT DISTINCT T1.first_name ,  T1.middle_name ,  T1.last_name FROM Students AS T1 JOIN Student_Enrolment AS T2 ON T1.student_id  =  T2.student_id JOIN Degree_Programs AS T3 ON T2.degree_program_id  =  T3.degree_program_id WHERE T3.degree_summary_name  =  'Bachelor'
+
+select T1.first_name, T1.middle_name, T1.last_name FROM students AS T1 JOIN student_enrolment AS T2 ON T1.student_id = T2.student_id WHERE T2.degree_program_id = "Bachelors"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/student_transcripts_tracking/student_transcripts_tracking.sqlite	SELECT DISTINCT T1.first_name ,  T1.middle_name ,  T1.last_name FROM Students AS T1 JOIN Student_Enrolment AS T2 ON T1.student_id  =  T2.student_id JOIN Degree_Programs AS T3 ON T2.degree_program_id  =  T3.degree_program_id WHERE T3.degree_summary_name  =  'Bachelor'
+
+select T1.course_name FROM Courses AS T1 JOIN Student_Enrolment_Courses AS T2 ON T1.course_id = T2.course_id GROUP BY T1.course_name ORDER BY count(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/student_transcripts_tracking/student_transcripts_tracking.sqlite	SELECT T1.degree_summary_name FROM Degree_Programs AS T1 JOIN Student_Enrolment AS T2 ON T1.degree_program_id  =  T2.degree_program_id GROUP BY T1.degree_summary_name ORDER BY count(*) DESC LIMIT 1
+
+select T1.course_id, T1.degree_summary_name FROM Courses AS T1 JOIN Student_Enrolment_Courses AS T2 ON T1.course_id = T2.course_id GROUP BY T1.course_id ORDER BY count(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/student_transcripts_tracking/student_transcripts_tracking.sqlite	SELECT T1.degree_program_id ,  T1.degree_summary_name FROM Degree_Programs AS T1 JOIN Student_Enrolment AS T2 ON T1.degree_program_id  =  T2.degree_program_id GROUP BY T1.degree_program_id ORDER BY count(*) DESC LIMIT 1
+
+select T1.degree_program_id, T2.degree_summary_name FROM Student_Enrolment AS T1 JOIN Course_Programs AS T2 ON T1.degree_program_id = T2.degree_program_id GROUP BY T1.degree_program_id ORDER BY count(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/student_transcripts_tracking/student_transcripts_tracking.sqlite	SELECT T1.degree_program_id ,  T1.degree_summary_name FROM Degree_Programs AS T1 JOIN Student_Enrolment AS T2 ON T1.degree_program_id  =  T2.degree_program_id GROUP BY T1.degree_program_id ORDER BY count(*) DESC LIMIT 1
+
+select T1.student_id, T1.first_name, T1.last_name, T1.student_id FROM Students AS T1 JOIN Student_Enrolment AS T2 ON T1.student_id = T2.student_id GROUP BY T1.student_id ORDER BY count(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/student_transcripts_tracking/student_transcripts_tracking.sqlite	SELECT T1.student_id ,  T1.first_name ,  T1.middle_name ,  T1.last_name ,  count(*) ,  T1.student_id FROM Students AS T1 JOIN Student_Enrolment AS T2 ON T1.student_id  =  T2.student_id GROUP BY T1.student_id ORDER BY count(*) DESC LIMIT 1
+
+select T1.first_name, T1.middle_name, T1.last_name, T1.student_id, count(*) FROM Students AS T1 JOIN Student_Enrolment AS T2 ON T1.student_id = T2.student_id GROUP BY T1.student_id ORDER BY count(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/student_transcripts_tracking/student_transcripts_tracking.sqlite	SELECT T1.student_id ,  T1.first_name ,  T1.middle_name ,  T1.last_name ,  count(*) ,  T1.student_id FROM Students AS T1 JOIN Student_Enrolment AS T2 ON T1.student_id  =  T2.student_id GROUP BY T1.student_id ORDER BY count(*) DESC LIMIT 1
+
+select semester_name FROM semesters WHERE semester_id NOT IN ( semester_id FROM student_enrolment)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/student_transcripts_tracking/student_transcripts_tracking.sqlite	SELECT semester_name FROM Semesters WHERE semester_id NOT IN( SELECT semester_id FROM Student_Enrolment )
+
+select semester_name FROM semesters WHERE semester_id NOT IN ( semester_id FROM student_enrolment)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/student_transcripts_tracking/student_transcripts_tracking.sqlite	SELECT semester_name FROM Semesters WHERE semester_id NOT IN( SELECT semester_id FROM Student_Enrolment )
+
+select last_name FROM students WHERE current_address_id NOT IN ( student_id FROM student_enrolment)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/student_transcripts_tracking/student_transcripts_tracking.sqlite	SELECT T1.last_name FROM Students AS T1 JOIN Addresses AS T2 ON T1.current_address_id  =  T2.address_id WHERE T2.state_province_county  =  'NorthCarolina' EXCEPT SELECT DISTINCT T3.last_name FROM Students AS T3 JOIN Student_Enrolment AS T4 ON T3.student_id  =  T4.student_id
+
+select last_name FROM students WHERE current_address_id NOT IN ( student_id FROM student_enrolment)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/student_transcripts_tracking/student_transcripts_tracking.sqlite	SELECT T1.last_name FROM Students AS T1 JOIN Addresses AS T2 ON T1.current_address_id  =  T2.address_id WHERE T2.state_province_county  =  'NorthCarolina' EXCEPT SELECT DISTINCT T3.last_name FROM Students AS T3 JOIN Student_Enrolment AS T4 ON T3.student_id  =  T4.student_id
+
+select cell_mobile_number FROM Students WHERE first_name = "Timmothy" AND last_name = "Ward"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/student_transcripts_tracking/student_transcripts_tracking.sqlite	select cell_mobile_number from students where first_name  =  'timmothy' and last_name  =  'ward'
+
+select first_name, middle_name, last_name FROM Students WHERE semester_id = ( semester_id FROM School) ORDER BY semester_id LIMIT 1)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/student_transcripts_tracking/student_transcripts_tracking.sqlite	SELECT first_name ,  middle_name ,  last_name FROM Students ORDER BY date_left ASC LIMIT 1
+
+select first_name FROM Students WHERE permanent_address_id!= ( permanent_address_id FROM Students GROUP BY permanent_address_id ORDER BY count(*) DESC LIMIT 1)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/student_transcripts_tracking/student_transcripts_tracking.sqlite	SELECT first_name FROM Students WHERE current_address_id != permanent_address_id
+
+select first_name FROM students WHERE permanent_address_id!= ( permanent_address_id FROM students WHERE current_address_id!= 'current_address_id' )	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/student_transcripts_tracking/student_transcripts_tracking.sqlite	SELECT first_name FROM Students WHERE current_address_id != permanent_address_id
+
+select address_id, line_1 FROM addresses GROUP BY address_id ORDER BY count(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/student_transcripts_tracking/student_transcripts_tracking.sqlite	SELECT T1.address_id ,  T1.line_1 ,  T1.line_2 FROM Addresses AS T1 JOIN Students AS T2 ON T1.address_id  =  T2.current_address_id GROUP BY T1.address_id ORDER BY count(*) DESC LIMIT 1
+
+select address_id, line_1, line_2 FROM addresses GROUP BY address_id ORDER BY count(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/student_transcripts_tracking/student_transcripts_tracking.sqlite	SELECT T1.address_id ,  T1.line_1 ,  T1.line_2 FROM Addresses AS T1 JOIN Students AS T2 ON T1.address_id  =  T2.current_address_id GROUP BY T1.address_id ORDER BY count(*) DESC LIMIT 1
+
+select avg(transcript_date) FROM TRANSPRESSORS	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/student_transcripts_tracking/student_transcripts_tracking.sqlite	SELECT avg(transcript_date) FROM Transcripts
+
+select avg(transcript_date), other_details FROM TRANScripts	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/student_transcripts_tracking/student_transcripts_tracking.sqlite	SELECT transcript_date ,  other_details FROM Transcripts ORDER BY transcript_date ASC LIMIT 1
+
+select last_transcript_date FROM TRANScripts ORDER BY last_transcript_date DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/student_transcripts_tracking/student_transcripts_tracking.sqlite	SELECT transcript_date FROM Transcripts ORDER BY transcript_date DESC LIMIT 1
+
+select max(transcript_date) FROM TRANSPRESSORS	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/student_transcripts_tracking/student_transcripts_tracking.sqlite	SELECT transcript_date FROM Transcripts ORDER BY transcript_date DESC LIMIT 1
+
+select T1.course_id, count(*) FROM Courses AS T1 JOIN Student_Enrolment AS T2 ON T1.course_id = T2.course_id GROUP BY T1.course_id	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/student_transcripts_tracking/student_transcripts_tracking.sqlite	SELECT count(*) ,  student_course_id FROM Transcript_Contents GROUP BY student_course_id ORDER BY count(*) DESC LIMIT 1
+
+select T1.course_name, T1.student_enrolment_id FROM Courses AS T1 JOIN Student_Enrolment_Courses AS T2 ON T1.course_id = T2.course_id GROUP BY T1.course_name ORDER BY count(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/student_transcripts_tracking/student_transcripts_tracking.sqlite	SELECT count(*) ,  student_course_id FROM Transcript_Contents GROUP BY student_course_id ORDER BY count(*) DESC LIMIT 1
+
+select semester_name FROM semesters WHERE semester_name = 'MA' INTERSECT semester_name FROM semesters WHERE semester_name = 'Bachelor'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/student_transcripts_tracking/student_transcripts_tracking.sqlite	SELECT DISTINCT T2.semester_id FROM Degree_Programs AS T1 JOIN Student_Enrolment AS T2 ON T1.degree_program_id  =  T2.degree_program_id WHERE degree_summary_name  =  'Master' INTERSECT SELECT DISTINCT T2.semester_id FROM Degree_Programs AS T1 JOIN Student_Enrolment AS T2 ON T1.degree_program_id  =  T2.degree_program_id WHERE degree_summary_name  =  'Bachelor'
+
+select semester_id FROM student_enrolment WHERE student_id IN ( student_id FROM student_enrolment WHERE degree_program_id = 'MA' INTERSECT semester_id FROM student_enrolment WHERE student_id IN ( student_id FROM student_enrolment WHERE degree_program_id = 'Bachelors')	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/student_transcripts_tracking/student_transcripts_tracking.sqlite	SELECT DISTINCT T2.semester_id FROM Degree_Programs AS T1 JOIN Student_Enrolment AS T2 ON T1.degree_program_id  =  T2.degree_program_id WHERE degree_summary_name  =  'Master' INTERSECT SELECT DISTINCT T2.semester_id FROM Degree_Programs AS T1 JOIN Student_Enrolment AS T2 ON T1.degree_program_id  =  T2.degree_program_id WHERE degree_summary_name  =  'Bachelor'
+
+select DISTINCT address_id FROM Students	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/student_transcripts_tracking/student_transcripts_tracking.sqlite	SELECT count(DISTINCT current_address_id) FROM Students
+
+select other_student_details FROM Students ORDER BY first_name DESC	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/student_transcripts_tracking/student_transcripts_tracking.sqlite	SELECT other_student_details FROM Students ORDER BY other_student_details DESC
+
+select first_name FROM students WHERE permanent_address_id IN ( permanent_address_id FROM students WHERE cell_mobile_number = "09700166582" ) OR cell_mobile_number = "09700166582"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/student_transcripts_tracking/student_transcripts_tracking.sqlite	select t1.first_name from students as t1 join addresses as t2 on t1.permanent_address_id  =  t2.address_id where t2.country  =  'haiti' or t1.cell_mobile_number  =  '09700166582'
+
+select first_name FROM students WHERE permanent_address_id IN ( permanent_address_id FROM students WHERE cell_mobile_number = "09700166582" ) OR cell_mobile_number = "09700166582"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/student_transcripts_tracking/student_transcripts_tracking.sqlite	select t1.first_name from students as t1 join addresses as t2 on t1.permanent_address_id  =  t2.address_id where t2.country  =  'haiti' or t1.cell_mobile_number  =  '09700166582'
+
+select directed_by FROM Cartoon WHERE directed_by = "Ben Jones"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/tvshow/tvshow.sqlite	SELECT Title FROM Cartoon WHERE Directed_by = "Ben Jones";
+
+select title, directed_by FROM Cartoon ORDER BY air_date	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/tvshow/tvshow.sqlite	SELECT title ,  Directed_by FROM Cartoon ORDER BY Original_air_date
+
+select count(*) FROM TV_channel WHERE Language = "english"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/tvshow/tvshow.sqlite	SELECT count(*) FROM TV_Channel WHERE LANGUAGE = "English";
+
+select count(*) FROM TV_channel WHERE Language = "english"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/tvshow/tvshow.sqlite	SELECT count(*) FROM TV_Channel WHERE LANGUAGE = "English";
+
+select T1.series_name FROM TV_channel AS T1 JOIN Cartoon AS T2 ON T1.id = T2.channel WHERE T2.title = "The Rise of the Blue Beetle"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/tvshow/tvshow.sqlite	SELECT T1.series_name FROM TV_Channel AS T1 JOIN Cartoon AS T2 ON T1.id = T2.Channel WHERE T2.Title = "The Rise of the Blue Beetle!";
+
+select T1.title FROM Cartoon AS T1 JOIN TV_channel AS T2 ON T1.id = T2.channel WHERE T2.series_name = "Sky Radio"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/tvshow/tvshow.sqlite	SELECT T2.Title FROM TV_Channel AS T1 JOIN Cartoon AS T2 ON T1.id = T2.Channel WHERE T1.series_name = "Sky Radio";
+
+select T1.series_name FROM TV_channel AS T1 JOIN film AS T2 ON T1.id = T2.channel WHERE T2.episode = "A Love of a Lifetime"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/tvshow/tvshow.sqlite	SELECT T1.series_name FROM TV_Channel AS T1 JOIN TV_series AS T2 ON T1.id = T2.Channel WHERE T2.Episode = "A Love of a Lifetime";
+
+select Episode FROM TV_series WHERE Channel = "Sky Radio"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/tvshow/tvshow.sqlite	SELECT T2.Episode FROM TV_Channel AS T1 JOIN TV_series AS T2 ON T1.id = T2.Channel WHERE T1.series_name = "Sky Radio";
+
+select Episode FROM TV_series WHERE Series_name = "Sky Radio"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/tvshow/tvshow.sqlite	SELECT T2.Episode FROM TV_Channel AS T1 JOIN TV_series AS T2 ON T1.id = T2.Channel WHERE T1.series_name = "Sky Radio";
+
+select T1.Package_Option, T1.series_name FROM TV_channel AS T1 JOIN Movie AS T2 ON T1.id = T2.channel WHERE T2.hight_definition_TV = 'HD'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/tvshow/tvshow.sqlite	SELECT package_option ,  series_name FROM TV_Channel WHERE hight_definition_TV  =  "yes"
+
+select T1.Package_Option, T1.series_name FROM TV_channel AS T1 JOIN Movie AS T2 ON T1.id = T2.channel WHERE T1.hight_definition_TV = 'HD'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/tvshow/tvshow.sqlite	SELECT package_option ,  series_name FROM TV_Channel WHERE hight_definition_TV  =  "yes"
+
+select country FROM TV_channel EXCEPT country FROM channel WHERE channel IN ( id FROM Cartoon WHERE written_by = "Todd Casey")	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/tvshow/tvshow.sqlite	SELECT country FROM TV_Channel EXCEPT SELECT T1.country FROM TV_Channel AS T1 JOIN cartoon AS T2 ON T1.id = T2.Channel WHERE T2.written_by  =  'Todd Casey'
+
+select country FROM TV_channel EXCEPT country FROM channel WHERE channel = 'Tony Award'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/tvshow/tvshow.sqlite	SELECT country FROM TV_Channel EXCEPT SELECT T1.country FROM TV_Channel AS T1 JOIN cartoon AS T2 ON T1.id = T2.Channel WHERE T2.written_by  =  'Todd Casey'
+
+select T1.series_name, T1.country FROM TV_channel AS T1 JOIN Cartoon AS T2 ON T1.id = T2.channel WHERE T2.directed_by = "Ben Jones" INTERSECT T1.series_name, T1.country FROM TV_channel AS T1 JOIN Cartoon AS T2 ON T1.id = T2.channel WHERE T2.directed_by = "Michael Chang"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/tvshow/tvshow.sqlite	SELECT T1.series_name ,  T1.country FROM TV_Channel AS T1 JOIN cartoon AS T2 ON T1.id = T2.Channel WHERE T2.directed_by  =  'Michael Chang' INTERSECT SELECT T1.series_name ,  T1.country FROM TV_Channel AS T1 JOIN cartoon AS T2 ON T1.id = T2.Channel WHERE T2.directed_by  =  'Ben Jones'
+
+select T1.series_name, T1.country FROM TV_channel AS T1 JOIN Cartoon AS T2 ON T1.id = T2.channel WHERE T2.directed_by = "Ben Jones" INTERSECT T1.series_name, T1.country FROM TV_channel AS T1 JOIN Cartoon AS T2 ON T1.id = T2.channel WHERE T2.directed_by = "Michael Chang"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/tvshow/tvshow.sqlite	SELECT T1.series_name ,  T1.country FROM TV_Channel AS T1 JOIN cartoon AS T2 ON T1.id = T2.Channel WHERE T2.directed_by  =  'Michael Chang' INTERSECT SELECT T1.series_name ,  T1.country FROM TV_Channel AS T1 JOIN cartoon AS T2 ON T1.id = T2.Channel WHERE T2.directed_by  =  'Ben Jones'
+
+select pixel_aspect_ratio_PAR, country FROM TV_channel WHERE language!= 'english'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/tvshow/tvshow.sqlite	SELECT Pixel_aspect_ratio_PAR ,  country FROM tv_channel WHERE LANGUAGE != 'English'
+
+select pixel_aspect_ratio_PAR, country FROM TV_channel WHERE language!= 'english'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/tvshow/tvshow.sqlite	SELECT Pixel_aspect_ratio_PAR ,  country FROM tv_channel WHERE LANGUAGE != 'English'
+
+select tv_channel FROM TV_channel WHERE country = ( country FROM TV_channel GROUP BY country HAVING count(*) > 2 )	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/tvshow/tvshow.sqlite	SELECT id FROM tv_channel GROUP BY country HAVING count(*)  >  2
+
+select id FROM TV_channel GROUP BY id HAVING count(*) > 2	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/tvshow/tvshow.sqlite	SELECT id FROM tv_channel GROUP BY country HAVING count(*)  >  2
+
+select channel FROM channel EXCEPT channel FROM cartoon WHERE directed_by = 'Ben Jones'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/tvshow/tvshow.sqlite	SELECT id FROM TV_Channel EXCEPT SELECT channel FROM cartoon WHERE directed_by  =  'Ben Jones'
+
+select channel FROM channel EXCEPT channel FROM cartoon WHERE directed_by = 'Ben Jones'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/tvshow/tvshow.sqlite	SELECT id FROM TV_Channel EXCEPT SELECT channel FROM cartoon WHERE directed_by  =  'Ben Jones'
+
+select DISTINCT T1.Package_Option FROM TV_channel AS T1 JOIN Cartoon AS T2 ON T1.id = T2.channel WHERE T2.directed_by = "Ben Jones"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/tvshow/tvshow.sqlite	SELECT package_option FROM TV_Channel WHERE id NOT IN (SELECT channel FROM cartoon WHERE directed_by  =  'Ben Jones')
+
+select DISTINCT T1.Package_Option FROM TV_channel AS T1 JOIN Cartoon AS T2 ON T1.id = T2.channel WHERE T2.directed_by!= "Ben Jones"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/tvshow/tvshow.sqlite	SELECT package_option FROM TV_Channel WHERE id NOT IN (SELECT channel FROM cartoon WHERE directed_by  =  'Ben Jones')
+
+select Money_Rank FROM player ORDER BY Earnings DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/poker_player/poker_player.sqlite	SELECT Money_Rank FROM poker_player ORDER BY Earnings DESC LIMIT 1
+
+select max(Final_Table_Made) FROM poker_player WHERE Earnings  200000	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/poker_player/poker_player.sqlite	SELECT max(Final_Table_Made) FROM poker_player WHERE Earnings  <  200000
+
+select max(Final_Table_Made) FROM poker_player WHERE Earnings  200000	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/poker_player/poker_player.sqlite	SELECT max(Final_Table_Made) FROM poker_player WHERE Earnings  <  200000
+
+select Money_Rank FROM people ORDER BY Height DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/poker_player/poker_player.sqlite	SELECT T2.Money_Rank FROM people AS T1 JOIN poker_player AS T2 ON T1.People_ID  =  T2.People_ID ORDER BY T1.Height DESC LIMIT 1
+
+select Money_Rank FROM poker_player ORDER BY Height DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/poker_player/poker_player.sqlite	SELECT T2.Money_Rank FROM people AS T1 JOIN poker_player AS T2 ON T1.People_ID  =  T2.People_ID ORDER BY T1.Height DESC LIMIT 1
+
+select Name FROM people WHERE People_ID NOT IN ( People_ID FROM poker_player)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/poker_player/poker_player.sqlite	SELECT Name FROM people WHERE People_ID NOT IN (SELECT People_ID FROM poker_player)
+
+select Name FROM people WHERE People_ID NOT IN ( People_ID FROM poker_player)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/poker_player/poker_player.sqlite	SELECT Name FROM people WHERE People_ID NOT IN (SELECT People_ID FROM poker_player)
+
+select count(*) FROM state	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/voter_1/voter_1.sqlite	SELECT count(*) FROM area_code_state
+
+select max(area_code), min(area_code) FROMAREA_CODE_STATE	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/voter_1/voter_1.sqlite	SELECT max(area_code) ,  min(area_code) FROM area_code_state
+
+select count(*) FROM participants WHERE contestant_number NOT IN ( contestant_number FROM votes)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/voter_1/voter_1.sqlite	SELECT count(*) FROM contestants WHERE contestant_number NOT IN ( SELECT contestant_number FROM votes )
+
+select T1.area_code FROM AS T1 JOIN votes AS T2 ON T1.area_code = T2.area_code GROUP BY T1.area_code ORDER BY count(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/voter_1/voter_1.sqlite	SELECT T1.area_code FROM area_code_state AS T1 JOIN votes AS T2 ON T1.state  =  T2.state GROUP BY T1.area_code ORDER BY count(*) DESC LIMIT 1
+
+select T1.area_code FROM AS T1 JOIN votes AS T2 ON T1.vote_id = T2.vote_id JOIN contestants AS T3 ON T2.contestant_number = T3.contestant_number WHERE T3.contestant_name = 'Tabatha Gehling' INTERSECT T1.area_code FROM AS T1 JOIN votes AS T2 ON T1.vote_id = T2.vote_id JOIN contestants AS T3 ON T2.contestant_number = T3.contestant_number WHERE T3.contestant_name = 'Kelly Clauss'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/voter_1/voter_1.sqlite	SELECT T3.area_code FROM contestants AS T1 JOIN votes AS T2 ON T1.contestant_number  =  T2.contestant_number JOIN area_code_state AS T3 ON T2.state  =  T3.state WHERE T1.contestant_name  =  'Tabatha Gehling' INTERSECT SELECT T3.area_code FROM contestants AS T1 JOIN votes AS T2 ON T1.contestant_number  =  T2.contestant_number JOIN area_code_state AS T3 ON T2.state  =  T3.state WHERE T1.contestant_name  =  'Kelly Clauss'
+
+select contestant_name FROM participants WHERE contestant_name LIKE '%Al%'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/voter_1/voter_1.sqlite	select contestant_name from contestants where contestant_name like "%al%"
+
+select sum(surfacearea) FROM country WHERE region = 'Carribean'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT sum(SurfaceArea) FROM country WHERE Region  =  "Caribbean"
+
+select region FROM country WHERE city = 'Khanul'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT Region FROM country AS T1 JOIN city AS T2 ON T1.Code  =  T2.CountryCode WHERE T2.Name  =  "Kabul"
+
+select region FROM country WHERE name = 'Khanull'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT Region FROM country AS T1 JOIN city AS T2 ON T1.Code  =  T2.CountryCode WHERE T2.Name  =  "Kabul"
+
+select Language FROM countrylanguage WHERE CountryCode = "Aruban" GROUP BY Language ORDER BY COUNT(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT T2.Language FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T1.Name  =  "Aruba" ORDER BY Percentage DESC LIMIT 1
+
+select t1.language FROM country AS t1 JOIN countrylanguage AS t2 ON t1.countrycode = t2.countrycode WHERE t1.name = "Aruban" GROUP BY t2.language ORDER BY count(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT T2.Language FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T1.Name  =  "Aruba" ORDER BY Percentage DESC LIMIT 1
+
+select Population, LifeExpectancy FROM country WHERE Country = "Brazil"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT Population ,  LifeExpectancy FROM country WHERE Name  =  "Brazil"
+
+select Population, LifeExpectancy FROM country	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT Population ,  LifeExpectancy FROM country WHERE Name  =  "Brazil"
+
+select region, population FROM country WHERE country = 'Angola'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT Population ,  Region FROM country WHERE Name  =  "Angola"
+
+select region, population FROM country WHERE country = 'Angola'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT Population ,  Region FROM country WHERE Name  =  "Angola"
+
+select avg(LifeExpectancy) FROM country WHERE Continent = "Central Africa"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT avg(LifeExpectancy) FROM country WHERE Region  =  "Central Africa"
+
+select Name FROM country ORDER BY LifeExpectancy LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT Name FROM country WHERE Continent  =  "Asia" ORDER BY LifeExpectancy LIMIT 1
+
+select sum(population), max(gnp) FROM country WHERE region = 'Asia'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT sum(Population) ,  max(GNP) FROM country WHERE Continent  =  "Asia"
+
+select count(*), GNP FROM country WHERE region = 'Asia' GROUP BY GNP ORDER BY count(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT sum(Population) ,  max(GNP) FROM country WHERE Continent  =  "Asia"
+
+select avg(LifeExpectancy) FROM country WHERE GovernmentForm = "Republic"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT avg(LifeExpectancy) FROM country WHERE Continent  =  "Africa" AND GovernmentForm  =  "Republic"
+
+select avg(LifeExpectancy) FROM country WHERE GovernmentForm = "Republic"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT avg(LifeExpectancy) FROM country WHERE Continent  =  "Africa" AND GovernmentForm  =  "Republic"
+
+select sum(surfacearea) FROM country WHERE Continent = 'Asia' INTERSECT sum(surfacearea) FROM country WHERE Continent = 'Europe'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT sum(SurfaceArea) FROM country WHERE Continent  =  "Asia" OR Continent  =  "Europe"
+
+select sum(surfacearea) FROM country WHERE region = 'Asia' OR region = 'Europe'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT sum(SurfaceArea) FROM country WHERE Continent  =  "Asia" OR Continent  =  "Europe"
+
+select count(*) FROM city WHERE district = 'Gedderland'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT sum(Population) FROM city WHERE District  =  "Gelderland"
+
+select sum(Population) FROM city WHERE District = "Gedderland"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT sum(Population) FROM city WHERE District  =  "Gelderland"
+
+select avg(GNP), sum(GNP) FROM country WHERE GovernmentForm = "USA"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT avg(GNP) ,  sum(population) FROM country WHERE GovernmentForm  =  "US Territory"
+
+select avg(GNP), sum(GNP) FROM country WHERE Region = "USA"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT avg(GNP) ,  sum(population) FROM country WHERE GovernmentForm  =  "US Territory"
+
+select sum(T1.Language) FROM country AS T1 JOIN countrylanguage AS T2 ON T1.CountryCode = T2.CountryCode WHERE T1.Name = "Aruban"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT COUNT(T2.Language) FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T1.Name  =  "Aruba"
+
+select count(*) FROM countrylanguage AS T1 JOIN country AS T2 ON T1.countrycode = T2.countrycode WHERE T2.name = "Aruban"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT COUNT(T2.Language) FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T1.Name  =  "Aruba"
+
+select count(*) FROM countrylanguage WHERE isofficial = 'Afghanistan'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT COUNT(*) FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T1.Name  =  "Afghanistan" AND IsOfficial  =  "T"
+
+select count(*) FROM countrylanguage AS T1 JOIN country AS T2 ON T1.countrycode = T2.countrycode WHERE T2.name = 'Afghanistan'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT COUNT(*) FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T1.Name  =  "Afghanistan" AND IsOfficial  =  "T"
+
+select Name FROM country ORDER BY Language DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode GROUP BY T1.Name ORDER BY COUNT(*) DESC LIMIT 1
+
+select Name FROM country GROUP BY Name ORDER BY count(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode GROUP BY T1.Name ORDER BY COUNT(*) DESC LIMIT 1
+
+select DISTINCT Continent FROM countrylanguage GROUP BY Continent ORDER BY COUNT(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT T1.Continent FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode GROUP BY T1.Continent ORDER BY COUNT(*) DESC LIMIT 1
+
+select DISTINCT Continent FROM countrylanguage GROUP BY Continent ORDER BY count(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT T1.Continent FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode GROUP BY T1.Continent ORDER BY COUNT(*) DESC LIMIT 1
+
+select count(*) FROM countrylanguage WHERE languages = 'English' INTERSECT count(*) FROM country WHERE languages = 'Dutch'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT COUNT(*) FROM (SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T2.Language  =  "English" INTERSECT SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T2.Language  =  "Dutch")
+
+select count(*) FROM countrylanguage WHERE languages = 'english' INTERSECT count(*) FROM country	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT COUNT(*) FROM (SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T2.Language  =  "English" INTERSECT SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T2.Language  =  "Dutch")
+
+select Name FROM country WHERE Language = "English" INTERSECT Name FROM country WHERE Language = "France"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T2.Language  =  "English" INTERSECT SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T2.Language  =  "French"
+
+select Name FROM country WHERE Language = "English" INTERSECT Name FROM country WHERE Language = "France"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T2.Language  =  "English" INTERSECT SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T2.Language  =  "French"
+
+select Name FROM country WHERE Language = "France" INTERSECT Name FROM country WHERE Language = "English"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T2.Language  =  "English" AND T2.IsOfficial  =  "T" INTERSECT SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T2.Language  =  "French" AND T2.IsOfficial  =  "T"
+
+select Name FROM country WHERE Language = "English" INTERSECT Name FROM country WHERE Language = "France"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T2.Language  =  "English" AND T2.IsOfficial  =  "T" INTERSECT SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T2.Language  =  "French" AND T2.IsOfficial  =  "T"
+
+select count(DISTINCT Continent) FROM countrylanguage WHERE Language = "Chinese"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT COUNT( DISTINCT Continent) FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T2.Language  =  "Chinese"
+
+select count(*) FROM country WHERE Language = "Chinese"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT COUNT( DISTINCT Continent) FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T2.Language  =  "Chinese"
+
+select region FROM country WHERE language = 'english' OR language = 'Dutch'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT DISTINCT T1.Region FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T2.Language  =  "English" OR T2.Language  =  "Dutch"
+
+select region FROM country WHERE language = 'Dutch' OR language = 'English'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT DISTINCT T1.Region FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T2.Language  =  "English" OR T2.Language  =  "Dutch"
+
+select country FROM country WHERE isOfficial = 'English' OR isOfficial = 'Dutch'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	select t1.name from country as t1 join countrylanguage as t2 on t1.code  =  t2.countrycode where t2.language  =  "english" and isofficial  =  "t" union select t1.name from country as t1 join countrylanguage as t2 on t1.code  =  t2.countrycode where t2.language  =  "dutch" and isofficial  =  "t"
+
+select country FROM countrylanguage WHERE languages = 'english' OR languages = 'Dutch'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT * FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T2.Language  =  "English" AND IsOfficial  =  "T" UNION SELECT * FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T2.Language  =  "Dutch" AND IsOfficial  =  "T"
+
+select t1.language FROM country AS t1 JOIN countrylanguage AS t2 ON t1.countrycode = t2.countrycode WHERE t1.Continent = "Asia" GROUP BY t1.language ORDER BY count(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT T2.Language FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T1.Continent  =  "Asia" GROUP BY T2.Language ORDER BY COUNT (*) DESC LIMIT 1
+
+select Language FROM country WHERE Continent = "Asia" GROUP BY Language ORDER BY COUNT(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT T2.Language FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T1.Continent  =  "Asia" GROUP BY T2.Language ORDER BY COUNT (*) DESC LIMIT 1
+
+select DISTINCT T1.language FROM country AS T1 JOIN countrylanguage AS T2 ON T1.countrycode = T2.countrycode WHERE T1.GovernmentForm = "Republic"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT T2.Language FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T1.GovernmentForm  =  "Republic" GROUP BY T2.Language HAVING COUNT(*)  =  1
+
+select DISTINCT T1.language FROM country AS T1 JOIN countrylanguage AS T2 ON T1.countrycode = T2.countrycode WHERE T1.GovernmentForm = "Republic"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT T2.Language FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T1.GovernmentForm  =  "Republic" GROUP BY T2.Language HAVING COUNT(*)  =  1
+
+select name FROM city WHERE population IN ( max(population) FROM countrylanguage WHERE language = 'english')	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT T1.Name ,  T1.Population FROM city AS T1 JOIN countrylanguage AS T2 ON T1.CountryCode  =  T2.CountryCode WHERE T2.Language  =  "English" ORDER BY T1.Population DESC LIMIT 1
+
+select T1.name FROM city AS T1 JOIN countrylanguage AS T2 ON T1.countrycode = T2.countrycode WHERE T2.language = 'english' GROUP BY T1.cityname ORDER BY count(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT T1.Name ,  T1.Population FROM city AS T1 JOIN countrylanguage AS T2 ON T1.CountryCode  =  T2.CountryCode WHERE T2.Language  =  "English" ORDER BY T1.Population DESC LIMIT 1
+
+select name, population, lifeexpectancy FROM country WHERE region = 'Asia' ORDER BY surfacearea DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT Name ,  Population ,  LifeExpectancy FROM country WHERE Continent  =  "Asia" ORDER BY SurfaceArea DESC LIMIT 1
+
+select Name, Population, LifeExpectancy FROM country WHERE Continent = "Asia" GROUP BY Name ORDER BY COUNT(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT Name ,  Population ,  LifeExpectancy FROM country WHERE Continent  =  "Asia" ORDER BY SurfaceArea DESC LIMIT 1
+
+select avg(LifeExpectancy) FROM country WHERE Language!= "english"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT avg(LifeExpectancy) FROM country WHERE Name NOT IN (SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T2.Language  =  "English" AND T2.IsOfficial  =  "T")
+
+select avg(LifeExpectancy) FROM country WHERE Language!= "english"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT avg(LifeExpectancy) FROM country WHERE Name NOT IN (SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T2.Language  =  "English" AND T2.IsOfficial  =  "T")
+
+select sum(population) FROM country WHERE countrycode NOT IN ( countrycode FROM countrylanguage WHERE language = 'english')	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT sum(Population) FROM country WHERE Name NOT IN (SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T2.Language  =  "English")
+
+select count(*) FROM country WHERE Language!= "english"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT sum(Population) FROM country WHERE Name NOT IN (SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T2.Language  =  "English")
+
+select t1.language FROM country AS t1 JOIN countrylanguage AS t2 ON t1.countrycode = t2.countrycode WHERE t1.headofstate = 'Betrix'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT T2.Language FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T1.HeadOfState  =  "Beatrix" AND T2.IsOfficial  =  "T"
+
+select T1.language FROM country AS T1 JOIN countrylanguage AS T2 ON T1.countrycode = T2.countrycode WHERE T1.name = 'Betrix'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT T2.Language FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T1.HeadOfState  =  "Beatrix" AND T2.IsOfficial  =  "T"
+
+select count(DISTINCT language) FROM countrylanguage WHERE countrycode!= "1930"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT count(DISTINCT T2.Language) FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE  IndepYear  <  1930 AND T2.IsOfficial  =  "T"
+
+select count(DISTINCT language) FROM countrylanguage WHERE isofficial = 'Yes' AND YEAR  1930	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT count(DISTINCT T2.Language) FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE  IndepYear  <  1930 AND T2.IsOfficial  =  "T"
+
+select country FROM country WHERE surfacearea > ( max(surfacearea) FROM country WHERE region = 'Europe')	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT Name FROM country WHERE SurfaceArea  >  (SELECT min(SurfaceArea) FROM country WHERE Continent  =  "Europe")
+
+select country FROM country WHERE surfacearea > ( max(surfacearea) FROM country WHERE region = 'Europe')	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT Name FROM country WHERE SurfaceArea  >  (SELECT min(SurfaceArea) FROM country WHERE Continent  =  "Europe")
+
+select DISTINCT name FROM country WHERE population  ( max(population) FROM country WHERE region = 'Africa')	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT Name FROM country WHERE Continent  =  "Africa"  AND population  <  (SELECT max(population) FROM country WHERE Continent  =  "Asia")
+
+select DISTINCT name FROM country WHERE population  ( min(population) FROM country WHERE region = 'Africa')	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT Name FROM country WHERE Continent  =  "Africa"  AND population  <  (SELECT min(population) FROM country WHERE Continent  =  "Asia")
+
+select name FROM country WHERE population > ( max(population) FROM country WHERE region = 'Asia')	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT Name FROM country WHERE Continent  =  "Asia"  AND population  >  (SELECT max(population) FROM country WHERE Continent  =  "Africa")
+
+select name FROM country WHERE population > ( max(population) FROM country WHERE region = 'Asia')	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT Name FROM country WHERE Continent  =  "Asia"  AND population  >  (SELECT min(population) FROM country WHERE Continent  =  "Africa")
+
+select countrycode FROM country WHERE language!= 'english'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT CountryCode FROM countrylanguage EXCEPT SELECT CountryCode FROM countrylanguage WHERE LANGUAGE  =  "English"
+
+select countrycode FROM country EXCEPT countrycode FROM countrylanguage WHERE language = 'english'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT CountryCode FROM countrylanguage EXCEPT SELECT CountryCode FROM countrylanguage WHERE LANGUAGE  =  "English"
+
+select countrycode FROM countrylanguage WHERE languages!= 'english'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT DISTINCT CountryCode FROM countrylanguage WHERE LANGUAGE != "English"
+
+select countrycode FROM countrylanguage WHERE languages!= 'english'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT DISTINCT CountryCode FROM countrylanguage WHERE LANGUAGE != "English"
+
+select Code FROM country WHERE Language!= "english" AND GovernmentForm!= "Republic"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT Code FROM country WHERE GovernmentForm != "Republic" EXCEPT SELECT CountryCode FROM countrylanguage WHERE LANGUAGE  =  "English"
+
+select Code FROM country WHERE Language!= "english" EXCEPT countrycode FROM countrylanguage WHERE GovernmentForm = "Republic"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT Code FROM country WHERE GovernmentForm != "Republic" EXCEPT SELECT CountryCode FROM countrylanguage WHERE LANGUAGE  =  "English"
+
+select name FROM city WHERE countrycode NOT IN ( countrycode FROM countrylanguage WHERE language!= 'english')	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT DISTINCT T2.Name FROM country AS T1 JOIN city AS T2 ON T2.CountryCode  =  T1.Code WHERE T1.Continent  =  'Europe' AND T1.Name NOT IN (SELECT T3.Name FROM country AS T3 JOIN countrylanguage AS T4 ON T3.Code  =  T4.CountryCode WHERE T4.IsOfficial  =  'T' AND T4.Language  =  'English')
+
+select Name FROM city WHERE CountryCode NOT IN ( CountryCode FROM countrylanguage WHERE Language = "english")	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT DISTINCT T2.Name FROM country AS T1 JOIN city AS T2 ON T2.CountryCode  =  T1.Code WHERE T1.Continent  =  'Europe' AND T1.Name NOT IN (SELECT T3.Name FROM country AS T3 JOIN countrylanguage AS T4 ON T3.Code  =  T4.CountryCode WHERE T4.IsOfficial  =  'T' AND T4.Language  =  'English')
+
+select DISTINCT T1.name FROM city AS T1 JOIN countrylanguage AS T2 ON T1.countrycode = T2.countrycode WHERE T2.language = 'Chinese'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	select distinct t3.name from country as t1 join countrylanguage as t2 on t1.code  =  t2.countrycode join city as t3 on t1.code  =  t3.countrycode where t2.isofficial  =  't' and t2.language  =  'chinese' and t1.continent  =  "asia"
+
+select DISTINCT name FROM city WHERE countrycode = 'Asia' AND language = 'Chinese'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT DISTINCT T3.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode JOIN city AS T3 ON T1.Code  =  T3.CountryCode WHERE T2.IsOfficial  =  'T' AND T2.Language  =  'Chinese' AND T1.Continent  =  "Asia"
+
+select name, independenceyear, surfacearea FROM country ORDER BY population LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT Name ,  SurfaceArea ,  IndepYear FROM country ORDER BY Population LIMIT 1
+
+select T1.Name, count(*) FROM country AS T1 JOIN countrylanguage AS T2 ON T1.CountryCode = T2.CountryCode GROUP BY T1.CountryCode HAVING count(*) >= 3	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT COUNT(T2.Language) ,  T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode GROUP BY T1.Name HAVING COUNT(*)  >  2
+
+select T1.Name, count(*) FROM country AS T1 JOIN countrylanguage AS T2 ON T1.CountryCode = T2.CountryCode GROUP BY T1.CountryCode HAVING count(*) > 2	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT COUNT(T2.Language) ,  T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode GROUP BY T1.Name HAVING COUNT(*)  >  2
+
+select district, count(*) FROM city WHERE population > ( avg(population) FROM city) GROUP BY district	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT count(*) ,  District FROM city WHERE Population  >  (SELECT avg(Population) FROM city) GROUP BY District
+
+select district, count(*) FROM city WHERE population > ( avg(population) FROM city) GROUP BY district	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT count(*) ,  District FROM city WHERE Population  >  (SELECT avg(Population) FROM city) GROUP BY District
+
+select GovernmentForm, AVG(LifeExpectancy) FROM country GROUP BY GovernmentForm HAVING AVG(LifeExpectancy) > 72	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT sum(Population) ,  GovernmentForm FROM country GROUP BY GovernmentForm HAVING avg(LifeExpectancy)  >  72
+
+select avg(LifeExpectancy), sum(Population) FROM country WHERE LifeExpectancy  72 GROUP BY country	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT sum(Population) ,  avg(LifeExpectancy) ,  Continent FROM country GROUP BY Continent HAVING avg(LifeExpectancy)  <  72
+
+select Continent, AVG(Population), AVG(LifeExpectancy) FROM country GROUP BY Continent	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT sum(Population) ,  avg(LifeExpectancy) ,  Continent FROM country GROUP BY Continent HAVING avg(LifeExpectancy)  <  72
+
+select Name, SurfaceArea FROM country ORDER BY GNP DESC LIMIT 5	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT Name ,  SurfaceArea FROM country ORDER BY SurfaceArea DESC LIMIT 5
+
+select count(*) FROM country WHERE region = 'Asia'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT count(*) FROM country WHERE continent  =  "Asia"
+
+select count(*) FROM country WHERE region = 'Asia'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT count(*) FROM country WHERE continent  =  "Asia"
+
+select sum(population), avg(surfacearea) FROM country WHERE Continent > 3000	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	select sum(population) ,  avg(surfacearea) from country where continent  =  "north america" and surfacearea  >  3000
+
+select sum(population), avg(surfacearea) FROM country WHERE region > 3000	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	select sum(population) ,  avg(surfacearea) from country where continent  =  "north america" and surfacearea  >  3000
+
+select Language FROM countrylanguage GROUP BY Language ORDER BY COUNT(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT LANGUAGE ,  CountryCode ,  max(Percentage) FROM countrylanguage GROUP BY CountryCode
+
+select T1.CountryCode, T2.Language FROM country AS T1 JOIN countrylanguage AS T2 ON T1.CountryCode = T2.CountryCode GROUP BY T1.CountryCode ORDER BY COUNT(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT LANGUAGE ,  CountryCode ,  max(Percentage) FROM countrylanguage GROUP BY CountryCode
+
+select count(*) FROM country WHERE language = 'Spanish' GROUP BY countrycode ORDER BY count(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT count(*) ,   max(Percentage) FROM countrylanguage WHERE LANGUAGE  =  "Spanish" GROUP BY CountryCode
+
+select count(*) FROM country WHERE Language = "Spanish" GROUP BY countrycode ORDER BY count(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT count(*) ,   max(Percentage) FROM countrylanguage WHERE LANGUAGE  =  "Spanish" GROUP BY CountryCode
+
+select countrycode FROM countrylanguage WHERE language = 'Spanish' GROUP BY countrycode ORDER BY count(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT CountryCode ,  max(Percentage) FROM countrylanguage WHERE LANGUAGE  =  "Spanish" GROUP BY CountryCode
+
+select countrycode FROM countrylanguage WHERE language = 'Spanish' GROUP BY countrycode ORDER BY count(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/world_1/world_1.sqlite	SELECT CountryCode ,  max(Percentage) FROM countrylanguage WHERE LANGUAGE  =  "Spanish" GROUP BY CountryCode
+
+select T1.Name FROM conductor AS T1 JOIN orchestra AS T2 ON T1.Conductor_ID = T2.Conductor_ID GROUP BY T1.Name ORDER BY count(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/orchestra/orchestra.sqlite	SELECT T1.Name FROM conductor AS T1 JOIN orchestra AS T2 ON T1.Conductor_ID  =  T2.Conductor_ID GROUP BY T2.Conductor_ID ORDER BY COUNT(*) DESC LIMIT 1
+
+select T1.Name FROM conductor AS T1 JOIN orchestra AS T2 ON T1.Conductor_ID = T2.Conductor_ID GROUP BY T1.Name ORDER BY count(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/orchestra/orchestra.sqlite	SELECT T1.Name FROM conductor AS T1 JOIN orchestra AS T2 ON T1.Conductor_ID  =  T2.Conductor_ID GROUP BY T2.Conductor_ID ORDER BY COUNT(*) DESC LIMIT 1
+
+select Major_Record_Format FROM orchestra ORDER BY COUNT(*) ASC	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/orchestra/orchestra.sqlite	SELECT Major_Record_Format FROM orchestra GROUP BY Major_Record_Format ORDER BY COUNT(*) ASC
+
+select Major_Record_Format FROM orchestra GROUP BY Major_Record_Format ORDER BY COUNT(*) DESC	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/orchestra/orchestra.sqlite	SELECT Major_Record_Format FROM orchestra GROUP BY Major_Record_Format ORDER BY COUNT(*) ASC
+
+select Orchestra FROM orchestra WHERE Orchestra_ID NOT IN ( Orchestra_ID FROM performance)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/orchestra/orchestra.sqlite	SELECT Orchestra FROM orchestra WHERE Orchestra_ID NOT IN (SELECT Orchestra_ID FROM performance)
+
+select Orchestra FROM orchestra WHERE Orchestra_ID NOT IN ( Orchestra_ID FROM performance)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/orchestra/orchestra.sqlite	SELECT Orchestra FROM orchestra WHERE Orchestra_ID NOT IN (SELECT Orchestra_ID FROM performance)
+
+select Record_Company FROM orchestra WHERE YEAR_Of_Founded  2003 INTERSECT Record_Company FROM orchestra WHERE YEAR_of_Founded > 2003	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/orchestra/orchestra.sqlite	SELECT Record_Company FROM orchestra WHERE Year_of_Founded  <  2003 INTERSECT SELECT Record_Company FROM orchestra WHERE Year_of_Founded  >  2003
+
+select Record_Company FROM orchestra WHERE YEAR_Of_Founded  2003 INTERSECT Record_Company FROM orchestra WHERE YEAR_of_Founded > 2003	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/orchestra/orchestra.sqlite	SELECT Record_Company FROM orchestra WHERE Year_of_Founded  <  2003 INTERSECT SELECT Record_Company FROM orchestra WHERE Year_of_Founded  >  2003
+
+select name, grade FROM high schooler	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/network_1/network_1.sqlite	SELECT name ,  grade FROM Highschooler
+
+select count(*) FROM friend	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/network_1/network_1.sqlite	SELECT student_id ,  count(*) FROM Friend GROUP BY student_id
+
+select T1.name, count(*) FROM Highschooler AS T1 JOIN Friends AS T2 ON T1.id = T2.student_id GROUP BY T1.name	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/network_1/network_1.sqlite	SELECT T2.name ,  count(*) FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student_id  =  T2.id GROUP BY T1.student_id
+
+select T1.name, count(*) FROM Highschooler AS T1 JOIN Friends AS T2 ON T1.id = T2.friend_id GROUP BY T1.name	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/network_1/network_1.sqlite	SELECT T2.name ,  count(*) FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student_id  =  T2.id GROUP BY T1.student_id
+
+select T1.name FROM highschooler AS T1 JOIN friend AS T2 ON T1.id = T2.friend_id WHERE T1.name = 'Kyle'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/network_1/network_1.sqlite	SELECT T3.name FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student_id  =  T2.id JOIN Highschooler AS T3 ON T1.friend_id  =  T3.id WHERE T2.name  =  "Kyle"
+
+select T2.name FROM Student AS T1 JOIN Friends AS T2 ON T1.id = T2.friend_id JOIN Highschooler AS T3 ON T1.id = T3.highschooler_id WHERE T3.name = 'Kyle'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/network_1/network_1.sqlite	SELECT T3.name FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student_id  =  T2.id JOIN Highschooler AS T3 ON T1.friend_id  =  T3.id WHERE T2.name  =  "Kyle"
+
+select student_id FROM student EXCEPT student_id FROM friend	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/network_1/network_1.sqlite	SELECT id FROM Highschooler EXCEPT SELECT student_id FROM Friend
+
+select id FROM student EXCEPT id FROM friend	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/network_1/network_1.sqlite	SELECT id FROM Highschooler EXCEPT SELECT student_id FROM Friend
+
+select name FROM highschooler WHERE id NOT IN ( student_id FROM friend)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/network_1/network_1.sqlite	SELECT name FROM Highschooler EXCEPT SELECT T2.name FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student_id  =  T2.id
+
+select name FROM student WHERE id NOT IN ( student_id FROM friend)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/network_1/network_1.sqlite	SELECT name FROM Highschooler EXCEPT SELECT T2.name FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student_id  =  T2.id
+
+select T1.student_id, T2.friend_id FROM Student AS T1 JOIN Likes AS T2 ON T1.student_id = T2.student_id	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/network_1/network_1.sqlite	SELECT student_id FROM Friend INTERSECT SELECT liked_id FROM Likes
+
+select T1.student_id FROM Friends AS T1 JOIN Likes AS T2 ON T1.friend_id = T2.student_id	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/network_1/network_1.sqlite	SELECT student_id FROM Friend INTERSECT SELECT liked_id FROM Likes
+
+select T1.name FROM student AS T1 JOIN friends AS T2 ON T1.id = T2.student_id JOIN liked AS T3 ON T3.student_id = T2.student_id	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/network_1/network_1.sqlite	SELECT T2.name FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student_id  =  T2.id INTERSECT SELECT T2.name FROM Likes AS T1 JOIN Highschooler AS T2 ON T1.liked_id  =  T2.id
+
+select T1.name FROM highschooler AS T1 JOIN friends AS T2 ON T1.id = T2.friend_id JOIN likeds AS T3 ON T3.student_id = T2.student_id	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/network_1/network_1.sqlite	SELECT T2.name FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student_id  =  T2.id INTERSECT SELECT T2.name FROM Likes AS T1 JOIN Highschooler AS T2 ON T1.liked_id  =  T2.id
+
+select T1.student_id, count(*) FROM Student AS T1 JOIN Likes AS T2 ON T1.student_id = T2.student_id GROUP BY T1.student_id	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/network_1/network_1.sqlite	SELECT student_id ,  count(*) FROM Likes GROUP BY student_id
+
+select name FROM highschooler ORDER BY liked_id DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/network_1/network_1.sqlite	SELECT T2.name FROM Likes AS T1 JOIN Highschooler AS T2 ON T1.student_id  =  T2.id GROUP BY T1.student_id ORDER BY count(*) DESC LIMIT 1
+
+select T1.name FROM student AS T1 JOIN likes AS T2 ON T1.id = T2.student_id GROUP BY T2.student_id HAVING count(*) >= 2	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/network_1/network_1.sqlite	SELECT T2.name FROM Likes AS T1 JOIN Highschooler AS T2 ON T1.student_id  =  T2.id GROUP BY T1.student_id HAVING count(*)  >=  2
+
+select name FROM student WHERE grade > 5 GROUP BY name HAVING count(*) >= 2	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/network_1/network_1.sqlite	SELECT T2.name FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student_id  =  T2.id WHERE T2.grade  >  5 GROUP BY T1.student_id HAVING count(*)  >=  2
+
+select name FROM highschooler WHERE grade > 5 GROUP BY name HAVING count(*) >= 2	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/network_1/network_1.sqlite	SELECT T2.name FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student_id  =  T2.id WHERE T2.grade  >  5 GROUP BY T1.student_id HAVING count(*)  >=  2
+
+select count(*) FROM friend AS T1 JOIN likes AS T2 ON T1.friend_id = T2.friend_id WHERE T1.name = 'Kyle'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/network_1/network_1.sqlite	SELECT count(*) FROM Likes AS T1 JOIN Highschooler AS T2 ON T1.student_id  =  T2.id WHERE T2.name  =  "Kyle"
+
+select avg(grade) FROM student WHERE friend_id IN ( student_id FROM friend)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/network_1/network_1.sqlite	SELECT avg(grade) FROM Highschooler WHERE id IN (SELECT T1.student_id FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student_id  =  T2.id)
+
+select avg(grade) FROM Student WHERE friend_id IN ( student_id FROM Friends )	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/network_1/network_1.sqlite	SELECT avg(grade) FROM Highschooler WHERE id IN (SELECT T1.student_id FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student_id  =  T2.id)
+
+select min(grade) FROM student WHERE id NOT IN ( student_id FROM friend)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/network_1/network_1.sqlite	SELECT min(grade) FROM Highschooler WHERE id NOT IN (SELECT T1.student_id FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student_id  =  T2.id)
+
+select min(grade) FROM student WHERE id NOT IN ( student_id FROM friend)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/network_1/network_1.sqlite	SELECT min(grade) FROM Highschooler WHERE id NOT IN (SELECT T1.student_id FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student_id  =  T2.id)
+
+select state FROM owners INTERSECT state FROM professionals	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	SELECT state FROM Owners INTERSECT SELECT state FROM Professionals
+
+select state FROM owners INTERSECT state FROM professionals	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	SELECT state FROM Owners INTERSECT SELECT state FROM Professionals
+
+select avg(age) FROM dogs WHERE dog_id NOT IN ( dog_id FROM treatments)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	SELECT avg(age) FROM Dogs WHERE dog_id IN ( SELECT dog_id FROM Treatments )
+
+select avg(age) FROM dogs WHERE dog_id IN ( dog_id FROM treatments )	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	SELECT avg(age) FROM Dogs WHERE dog_id IN ( SELECT dog_id FROM Treatments )
+
+select T1.professional_id, T1.last_name, T1.cell_number FROM professionals AS T1 JOIN treatments AS T2 ON T1.role_code = T2.professional_id GROUP BY T1.professional_id HAVING count(*) > 2	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	SELECT professional_id ,  last_name ,  cell_number FROM Professionals WHERE state  =  'Indiana' UNION SELECT T1.professional_id ,  T1.last_name ,  T1.cell_number FROM Professionals AS T1 JOIN Treatments AS T2 ON T1.professional_id  =  T2.professional_id GROUP BY T1.professional_id HAVING count(*)  >  2
+
+select T1.professional_id, T1.last_name, T1.cell_number FROM professionals AS T1 JOIN treatments AS T2 ON T1.role_code = T2.role_code WHERE T1.state = 'Indiana' GROUP BY T1.professional_id HAVING count(*) > 2	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	SELECT professional_id ,  last_name ,  cell_number FROM Professionals WHERE state  =  'Indiana' UNION SELECT T1.professional_id ,  T1.last_name ,  T1.cell_number FROM Professionals AS T1 JOIN Treatments AS T2 ON T1.professional_id  =  T2.professional_id GROUP BY T1.professional_id HAVING count(*)  >  2
+
+select name FROM dogs WHERE dog_id NOT IN ( dog_id FROM treatments GROUP BY dog_id HAVING cost_of_treatment > 1000 )	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	select name from dogs where dog_id not in ( select dog_id from treatments group by dog_id having sum(cost_of_treatment)  >  1000 )
+
+select name FROM dogs WHERE owner_id NOT IN ( owner_id FROM treatments GROUP BY owner_id HAVING cost_of_treatment > 1000 )	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	select name from dogs where dog_id not in ( select dog_id from treatments group by dog_id having sum(cost_of_treatment)  >  1000 )
+
+select first_name FROM professionals WHERE role_code = 'dog' EXCEPT T1.first_name FROM professionals AS T1 JOIN owners AS T2 ON T1.role_code = T2.role_code WHERE T2.name = 'cat'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	SELECT first_name FROM Professionals UNION SELECT first_name FROM Owners EXCEPT SELECT name FROM Dogs
+
+select first_name FROM professionals WHERE role_code = 'dog' EXCEPT T1.first_name FROM professionals AS T1 JOIN owners AS T2 ON T1.role_code = T2.role_code WHERE T2.name = 'cat'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	SELECT first_name FROM Professionals UNION SELECT first_name FROM Owners EXCEPT SELECT name FROM Dogs
+
+select DISTINCT T1.professional_id, T1.role_code, T1.email_address FROM professionals AS T1 JOIN treatments AS T2 ON T1.professional_id = T2.professional_id	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	SELECT professional_id ,  role_code ,  email_address FROM Professionals EXCEPT SELECT T1.professional_id ,  T1.role_code ,  T1.email_address FROM Professionals AS T1 JOIN Treatments AS T2 ON T1.professional_id  =  T2.professional_id
+
+select professional_id, role_code, email_address FROM professionals EXCEPT T1.professional_id, T1.role_code, T1.email_address FROM professionals AS T1 JOIN treatments AS T2 ON T1.professional_id = T2.professional_id	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	SELECT professional_id ,  role_code ,  email_address FROM Professionals EXCEPT SELECT T1.professional_id ,  T1.role_code ,  T1.email_address FROM Professionals AS T1 JOIN Treatments AS T2 ON T1.professional_id  =  T2.professional_id
+
+select T1.owner_id, T1.last_name FROM owners AS T1 JOIN procedures AS T2 ON T1.owner_id = T2.owner_id GROUP BY T1.owner_id ORDER BY count(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	SELECT T1.owner_id ,  T1.last_name FROM Owners AS T1 JOIN Dogs AS T2 ON T1.owner_id  =  T2.owner_id JOIN Treatments AS T3 ON T2.dog_id  =  T3.dog_id GROUP BY T1.owner_id ORDER BY count(*) DESC LIMIT 1
+
+select T1.owner_id, T1.last_name FROM owners AS T1 JOIN procedures AS T2 ON T1.owner_id = T2.owner_id GROUP BY T1.owner_id ORDER BY sum(T2.cost_of_treatment) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	SELECT T1.owner_id ,  T1.last_name FROM Owners AS T1 JOIN Dogs AS T2 ON T1.owner_id  =  T2.owner_id JOIN Treatments AS T3 ON T2.dog_id  =  T3.dog_id GROUP BY T1.owner_id ORDER BY count(*) DESC LIMIT 1
+
+select T1.owner_id, T1.zip_code FROM owners AS T1 JOIN dogs AS T2 ON T1.owner_id = T2.owner_id GROUP BY T1.owner_id ORDER BY sum(T1.charge_amount) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	SELECT T1.owner_id ,  T1.zip_code FROM Owners AS T1 JOIN Dogs AS T2 ON T1.owner_id  =  T2.owner_id JOIN Treatments AS T3 ON T2.dog_id  =  T3.dog_id GROUP BY T1.owner_id ORDER BY sum(T3.cost_of_treatment) DESC LIMIT 1
+
+select T1.owner_id, T1.zip_code FROM owners AS T1 JOIN dogs AS T2 ON T1.owner_id = T2.owner_id GROUP BY T1.owner_id ORDER BY sum(T1.cost_of_treatment) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	SELECT T1.owner_id ,  T1.zip_code FROM Owners AS T1 JOIN Dogs AS T2 ON T1.owner_id  =  T2.owner_id JOIN Treatments AS T3 ON T2.dog_id  =  T3.dog_id GROUP BY T1.owner_id ORDER BY sum(T3.cost_of_treatment) DESC LIMIT 1
+
+select T1.treatment_id, T1.cell_number FROM procedures AS T1 JOIN professionals AS T2 ON T1.treatment_id = T2.treatment_id GROUP BY T1.treatment_id HAVING count(*) >= 2	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	SELECT T1.professional_id ,  T1.cell_number FROM Professionals AS T1 JOIN Treatments AS T2 ON T1.professional_id  =  T2.professional_id GROUP BY T1.professional_id HAVING count(*)  >=  2
+
+select T1.professional_id, T1.cell_number FROM professionals AS T1 JOIN treatments AS T2 ON T1.role_code = T2.role_code GROUP BY T1.professional_id HAVING count(*) >= 2	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	SELECT T1.professional_id ,  T1.cell_number FROM Professionals AS T1 JOIN Treatments AS T2 ON T1.professional_id  =  T2.professional_id GROUP BY T1.professional_id HAVING count(*)  >=  2
+
+select T1.first_name, T1.last_name FROM professionals AS T1 JOIN treatments AS T2 ON T1.professional_id = T2.professional_id WHERE T2.cost_of_treatment  ( avg(cost_of_treatment) FROM treatments)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	SELECT DISTINCT T1.first_name ,  T1.last_name FROM Professionals AS T1 JOIN Treatments AS T2 WHERE cost_of_treatment  <  ( SELECT avg(cost_of_treatment) FROM Treatments )
+
+select T1.first_name, T1.last_name FROM employees AS T1 JOIN procedures AS T2 ON T1.professional_id = T2.professional_id WHERE T2.cost_of_treatment  ( avg(cost_of_treatment) FROM procedures)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	SELECT DISTINCT T1.first_name ,  T1.last_name FROM Professionals AS T1 JOIN Treatments AS T2 WHERE cost_of_treatment  <  ( SELECT avg(cost_of_treatment) FROM Treatments )
+
+select T1.date_of_treatment, T2.first_name FROM procedures AS T1 JOIN professionals AS T2 ON T1.professional_id = T2.professional_id	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	SELECT T1.date_of_treatment ,  T2.first_name FROM Treatments AS T1 JOIN Professionals AS T2 ON T1.professional_id  =  T2.professional_id
+
+select T1.date_of_treatment, T2.first_name FROM procedures AS T1 JOIN professionals AS T2 ON T1.professional_id = T2.professional_id	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	SELECT T1.date_of_treatment ,  T2.first_name FROM Treatments AS T1 JOIN Professionals AS T2 ON T1.professional_id  =  T2.professional_id
+
+select cost_of_treatment, treatment_type_description FROM Treatments	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	SELECT T1.cost_of_treatment ,  T2.treatment_type_description FROM Treatments AS T1 JOIN treatment_types AS T2 ON T1.treatment_type_code  =  T2.treatment_type_code
+
+select T1.first_name, T1.last_name, T2.size_code FROM owners AS T1 JOIN dogs AS T2 ON T1.owner_id = T2.owner_id GROUP BY T1.owner_id ORDER BY count(*) DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	SELECT T1.first_name ,  T1.last_name ,  T2.size_code FROM Owners AS T1 JOIN Dogs AS T2 ON T1.owner_id  =  T2.owner_id
+
+select T1.first_name, T1.last_name, T2.name FROM Owners AS T1 JOIN Dogs AS T2 ON T1.owner_id = T2.owner_id	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	SELECT T1.first_name ,  T2.name FROM Owners AS T1 JOIN Dogs AS T2 ON T1.owner_id  =  T2.owner_id
+
+select T1.name, T1.date_of_treatment FROM dogs AS T1 JOIN treatments AS T2 ON T1.breed_code = T2.treatment_type_code JOIN breeds AS T3 ON T2.breed_code = T3.breed_code ORDER BY T3.breed_name LIMIT 1;	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	SELECT T1.name ,  T2.date_of_treatment FROM Dogs AS T1 JOIN Treatments AS T2 ON T1.dog_id  =  T2.dog_id WHERE T1.breed_code  =  ( SELECT breed_code FROM Dogs GROUP BY breed_code ORDER BY count(*) ASC LIMIT 1 )
+
+select T1.name, T1.date_of_treatment FROM dogs AS T1 JOIN treatments AS T2 ON T1.breed_code = T2.treatment_type_code JOIN breeds AS T3 ON T2.breed_code = T3.breed_code ORDER BY T3.breed_name LIMIT 1;	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	SELECT T1.name ,  T2.date_of_treatment FROM Dogs AS T1 JOIN Treatments AS T2 ON T1.dog_id  =  T2.dog_id WHERE T1.breed_code  =  ( SELECT breed_code FROM Dogs GROUP BY breed_code ORDER BY count(*) ASC LIMIT 1 )
+
+select T1.first_name, T1.name FROM Owners AS T1 JOIN Dogs AS T2 ON T1.owner_id = T2.owner_id WHERE T1.state = "Va."	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	SELECT T1.first_name ,  T2.name FROM Owners AS T1 JOIN Dogs AS T2 ON T1.owner_id  =  T2.owner_id WHERE T1.state  =  'Virginia'
+
+select first_name, last_name FROM owners WHERE state = "Va." AND dog_name = "Rohan";	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	SELECT T1.first_name ,  T2.name FROM Owners AS T1 JOIN Dogs AS T2 ON T1.owner_id  =  T2.owner_id WHERE T1.state  =  'Virginia'
+
+select date_arrived, date_departed FROM dogs WHERE dog_id IN ( dog_id FROM treatments )	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	SELECT DISTINCT T1.date_arrived ,  T1.date_departed FROM Dogs AS T1 JOIN Treatments AS T2 ON T1.dog_id  =  T2.dog_id
+
+select date_arrived, date_departed FROM dogs WHERE dog_id IN ( dog_id FROM treatments)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	SELECT DISTINCT T1.date_arrived ,  T1.date_departed FROM Dogs AS T1 JOIN Treatments AS T2 ON T1.dog_id  =  T2.dog_id
+
+select t1.last_name FROM owners AS t1 JOIN dogs AS t2 ON t1.owner_id = t2.owner_id ORDER BY t2.age LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	SELECT T1.last_name FROM Owners AS T1 JOIN Dogs AS T2 ON T1.owner_id  =  T2.owner_id WHERE T2.age  =  ( SELECT max(age) FROM Dogs )
+
+select t1.last_name FROM owners AS t1 JOIN dogs AS t2 ON t1.owner_id = t2.owner_id ORDER BY t2.age LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	SELECT T1.last_name FROM Owners AS T1 JOIN Dogs AS T2 ON T1.owner_id  =  T2.owner_id WHERE T2.age  =  ( SELECT max(age) FROM Dogs )
+
+select count(*) FROM dogs WHERE dog_id NOT IN ( dog_id FROM treatments )	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	SELECT count(DISTINCT dog_id) FROM Treatments
+
+select count(*) FROM dogs WHERE dog_id IN ( dog_id FROM procedures )	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	SELECT count(DISTINCT dog_id) FROM Treatments
+
+select count(*) FROM professionals AS T1 JOIN treatments AS T2 ON T1.professional_id = T2.professional_id WHERE T2.dog_id IN ( T1.dog_id FROM services AS T1 JOIN procedures AS T2 ON T2.treatment_id = T2.treatment_id WHERE T1.first_name = "Ashley")	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	SELECT count(DISTINCT professional_id) FROM Treatments
+
+select count(*) FROM dogs WHERE age  ( avg(age) FROM dogs)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	SELECT count(*) FROM Dogs WHERE age  <  ( SELECT avg(age) FROM Dogs )
+
+select count(*) FROM dogs WHERE age  ( avg(age) FROM dogs)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	SELECT count(*) FROM Dogs WHERE age  <  ( SELECT avg(age) FROM Dogs )
+
+select cost_of_treatment FROM procedures ORDER BY date_of_treatment DESC LIMIT 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	SELECT cost_of_treatment FROM Treatments ORDER BY date_of_treatment DESC LIMIT 1
+
+select count(*) FROM dogs WHERE dog_id NOT IN ( dog_id FROM treatments)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	SELECT count(*) FROM Dogs WHERE dog_id NOT IN ( SELECT dog_id FROM Treatments )
+
+select count(*) FROM dogs WHERE dog_id NOT IN ( dog_id FROM treatments)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	select count(*) from dogs where dog_id not in ( select dog_id from treatments )
+
+select count(*) FROM owners WHERE owner_id NOT IN ( owner_id FROM dogs)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	SELECT count(*) FROM Owners WHERE owner_id NOT IN ( SELECT owner_id FROM Dogs )
+
+select count(*) FROM owners WHERE owner_id NOT IN ( owner_id FROM dogs)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	SELECT count(*) FROM Owners WHERE owner_id NOT IN ( SELECT owner_id FROM Dogs )
+
+select count(*) FROM professionals WHERE role_code NOT IN ( role_code FROM services WHERE dog_id = 'yes' )	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	SELECT count(*) FROM Professionals WHERE professional_id NOT IN ( SELECT professional_id FROM Treatments )
+
+select count(*) FROM professionals WHERE role_code NOT IN ( role_code FROM services WHERE dog_id = 'yes' )	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	SELECT count(*) FROM Professionals WHERE professional_id NOT IN ( SELECT professional_id FROM Treatments )
+
+select name, age, weight FROM dogs WHERE abandoned_yn = 1 INTERSECT name, age, weight FROM dogs WHERE abandoned_yn = 0	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	SELECT name ,  age ,  weight FROM Dogs WHERE abandoned_yn  =  1
+
+select charge_type FROM charges ORDER BY charge_type DESC LIMIT 1;	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	SELECT max(charge_amount) FROM Charges
+
+select charge_amount FROM charges WHERE charge_type = ( charge_type_code FROM charges ORDER BY cost_of_treatment DESC LIMIT 1)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	SELECT max(charge_amount) FROM Charges
+
+select breed_name, size_code FROM breeds;	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	SELECT DISTINCT breed_code ,  size_code FROM dogs
+
+select DISTINCT breed_name, size_code FROM dogs	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	SELECT DISTINCT breed_code ,  size_code FROM dogs
+
+select first_name, treatment_type_description FROM procedures AS T1 JOIN professionals AS T2 ON T1.professional_id = T2.professional_id	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	SELECT DISTINCT T1.first_name ,  T3.treatment_type_description FROM professionals AS T1 JOIN Treatments AS T2 ON T1.professional_id  =  T2.professional_id JOIN Treatment_types AS T3 ON T2.treatment_type_code  =  T3.treatment_type_code
+
+select T1.first_name, T1.treatment_type_description FROM Treatments AS T1 JOIN Treatment_Types AS T2 ON T1.treatment_type_code = T2.treatment_type_code	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/dog_kennels/dog_kennels.sqlite	SELECT DISTINCT T1.first_name ,  T3.treatment_type_description FROM professionals AS T1 JOIN Treatments AS T2 ON T1.professional_id  =  T2.professional_id JOIN Treatment_types AS T3 ON T2.treatment_type_code  =  T3.treatment_type_code
+
+select Citizenship, MAX(Near_Worth_Millions) FROM singer GROUP BY Citizenship	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/singer/singer.sqlite	SELECT Citizenship ,  max(Net_Worth_Millions) FROM singer GROUP BY Citizenship
+
+select max(Non_Worth_Millions), Citizenship FROM singer GROUP BY Citizenship	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/singer/singer.sqlite	SELECT Citizenship ,  max(Net_Worth_Millions) FROM singer GROUP BY Citizenship
+
+select T1.Title, T2.Name FROM song AS T1 JOIN singer AS T2 ON T1.Song_ID = T2.Song_ID	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/singer/singer.sqlite	SELECT T2.Title ,  T1.Name FROM singer AS T1 JOIN song AS T2 ON T1.Singer_ID  =  T2.Singer_ID
+
+select DISTINCT T1.Name FROM singer AS T1 JOIN song AS T2 ON T1.Song_ID = T2.Song_ID WHERE T2.Sales > 300000	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/singer/singer.sqlite	SELECT DISTINCT T1.Name FROM singer AS T1 JOIN song AS T2 ON T1.Singer_ID  =  T2.Singer_ID WHERE T2.Sales  >  300000
+
+select DISTINCT T1.Name FROM singer AS T1 JOIN song AS T2 ON T1.Song_ID = T2.Song_ID WHERE T2.Sales > 300000	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/singer/singer.sqlite	SELECT DISTINCT T1.Name FROM singer AS T1 JOIN song AS T2 ON T1.Singer_ID  =  T2.Singer_ID WHERE T2.Sales  >  300000
+
+select T1.Name FROM singer AS T1 JOIN song AS T2 ON T1.Song_ID = T2.Song_ID GROUP BY T1.Song_ID HAVING COUNT(*) > 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/singer/singer.sqlite	SELECT T1.Name FROM singer AS T1 JOIN song AS T2 ON T1.Singer_ID  =  T2.Singer_ID GROUP BY T1.Name HAVING COUNT(*)  >  1
+
+select T1.Name FROM singer AS T1 JOIN song AS T2 ON T1.Song_ID = T2.Song_ID GROUP BY T1.Name HAVING COUNT(*) > 1	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/singer/singer.sqlite	SELECT T1.Name FROM singer AS T1 JOIN song AS T2 ON T1.Singer_ID  =  T2.Singer_ID GROUP BY T1.Name HAVING COUNT(*)  >  1
+
+select T1.Name, T2.Sales FROM singer AS T1 JOIN song AS T2 ON T1.Song_ID = T2.Song_ID GROUP BY T1.Name	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/singer/singer.sqlite	SELECT T1.Name ,  sum(T2.Sales) FROM singer AS T1 JOIN song AS T2 ON T1.Singer_ID  =  T2.Singer_ID GROUP BY T1.Name
+
+select T1.Name, COUNT(*) FROM song AS T1 JOIN singer AS T2 ON T1.Song_ID = T2.Song_ID GROUP BY T1.Song_ID	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/singer/singer.sqlite	SELECT T1.Name ,  sum(T2.Sales) FROM singer AS T1 JOIN song AS T2 ON T1.Singer_ID  =  T2.Singer_ID GROUP BY T1.Name
+
+select Name FROM singer WHERE Singer_ID NOT IN ( Singer_ID FROM song)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/singer/singer.sqlite	SELECT Name FROM singer WHERE Singer_ID NOT IN (SELECT Singer_ID FROM song)
+
+select Name FROM singer WHERE Singer_ID NOT IN ( Singer_ID FROM song)	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/singer/singer.sqlite	SELECT Name FROM singer WHERE Singer_ID NOT IN (SELECT Singer_ID FROM song)
+
+select Citizenship FROM singer WHERE Birth_Year  1945 INTERSECT Citizenship FROM singer WHERE Birth_Year > 1955	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/singer/singer.sqlite	SELECT Citizenship FROM singer WHERE Birth_Year  <  1945 INTERSECT SELECT Citizenship FROM singer WHERE Birth_Year  >  1955
+
+select Citizenship FROM singer WHERE Birth_Year  1945 INTERSECT Citizenship FROM singer WHERE Birth_Year > 1955	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/singer/singer.sqlite	SELECT Citizenship FROM singer WHERE Birth_Year  <  1945 INTERSECT SELECT Citizenship FROM singer WHERE Birth_Year  >  1955
+
+select property_type_description FROM properties WHERE property_type_code = "Location"	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/real_estate_properties/real_estate_properties.sqlite	SELECT T2.property_type_description FROM Properties AS T1 JOIN Ref_Property_Types AS T2 ON T1.property_type_code  =  T2.property_type_code GROUP BY T1.property_type_code
+
+select property_name FROM properties WHERE property_type_code = 'house' OR property_type_code = 'apartment'	/home/ubuntu/nl-to-sql-model-research/datasets/spider_ds/spider/database/real_estate_properties/real_estate_properties.sqlite	SELECT property_name FROM Properties WHERE property_type_code  =  "House" UNION SELECT property_name FROM Properties WHERE property_type_code  =  "Apartment" AND room_count  >  1
+
